@@ -1,0 +1,229 @@
+/* ==================== RESET ==================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ==================== VARIABLES ÚTILES ==================== */
+:root{
+  /* colores base del sitio */
+  --rose: #f9a8d4;              /* color del panel derecho (ajusta si querés más terracota) */
+  --text-dark: #374151;
+  --text-soft: #4b5563;
+
+  /* badges (bolitas) */
+  --badge-size: 64px;           /* diámetro del círculo */
+  --badge-shadow: 0 10px 24px rgba(0,0,0,.18), 0 4px 10px rgba(0,0,0,.08);
+  --icon-tint: #c2769f;         /* tinte del ícono dentro del badge */
+
+  /* padding del panel derecho de TRATAMENTOS
+     ¡IMPORTANTE! Debe coincidir con el padding-left real del panel
+     para que el centro del badge quede justo en la unión.
+  */
+  --content-pad-left: 64px;
+}
+
+/* ==================== HERO / HEADER ==================== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('/assets/img/logo/logo_con-fondo.jpg');
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.2); }
+
+/* NAV */
+.navbar{
+  position: relative; z-index: 10;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; padding: 32px 48px; height: 100px;
+}
+.logo-container{ display:flex; align-items:center; justify-content:center; }
+.logo-container img{ max-height:64px; width:auto; }
+
+.nav-left{ justify-content:flex-start; }
+.nav-right{ justify-content:flex-end; }
+
+.nav-menu{
+  display:flex; align-items:center; gap:32px;
+  color:#fff; font-size:14px; font-weight:300; letter-spacing:.1em;
+}
+.nav-menu a{ color:#fff; text-decoration:none; transition:color .3s; }
+.nav-menu a:hover{ color: var(--rose); }
+
+.logo{ height:100%; display:flex; align-items:center; justify-content:center; }
+.logo img{ max-height:64px; width:auto; }
+
+.dropdown{ position:relative; display:flex; align-items:center; gap:4px; cursor:pointer; }
+
+.mobile-menu-btn{ display:none; background:none; border:none; color:#fff; font-size:24px; cursor:pointer; }
+.mobile-menu{
+  display:none; position:absolute; top:80px; left:0; right:0;
+  background: rgba(0,0,0,.9); backdrop-filter: blur(10px);
+  padding:24px; z-index:20;
+}
+.mobile-menu.active{ display:block; }
+.mobile-menu a{
+  display:block; color:#fff; text-decoration:none; padding:16px 0;
+  font-size:14px; font-weight:300; letter-spacing:.1em; transition:color .3s;
+}
+.mobile-menu a:hover{ color: var(--rose); }
+
+/* HERO content */
+.hero-content{
+  position:relative; z-index:10; display:flex; align-items:center; justify-content:center;
+  min-height: calc(100vh - 100px); text-align:center; color:#fff; padding:0 24px;
+  animation: fadeInUp 1s ease-out;
+}
+.hero-subtitle{ font-size:14px; font-weight:300; letter-spacing:.2em; margin-bottom:16px; opacity:.9; }
+.hero-title{ font-size:4rem; font-weight:300; letter-spacing:.05em; }
+.hero-title span{ font-weight:400; }
+
+/* ==================== SECCIÓN TRATAMENTOS ==================== */
+/* Estructura 2 columnas */
+.tratamentos-section{
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  width: 100%;
+}
+
+/* Izquierda: imagen */
+.tratamentos-image{
+  background-image: url('/assets/img/lateral.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+}
+
+/* Derecha: panel */
+.tratamentos-content{
+  background: var(--rose);
+  padding: 80px 64px 80px var(--content-pad-left); /* ¡coincide con --content-pad-left! */
+  position: relative; /* necesario para calcular correctamente el offset de los badges */
+}
+
+/* Título */
+.tratamentos-title{
+  font-size: 3rem; font-weight:300; color:#fff; margin-bottom:48px;
+  text-shadow: 0 2px 12px rgba(0,0,0,.25);
+}
+
+/* --------- Ítems --------- */
+/* Convertimos el item en relativo y anulamos el “gap” visual antiguo */
+.treatment-item{
+  position: relative;
+  margin-bottom: 48px;
+  /* El texto se corre a la derecha del centro del badge */
+  padding-left: calc(var(--badge-size) / 2 + 24px);
+}
+
+/* El badge queda EXACTO en la unión:
+   - Se posiciona respecto al .treatment-item (que vive dentro de .tratamentos-content)
+   - Lo movemos hacia la IZQUIERDA tantas unidades como el padding-left real del panel
+     + la mitad del badge, para que el centro quede justo sobre el borde entre columnas.
+*/
+.treatment-icon{
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--content-pad-left) - (var(--badge-size) / 2));
+  width: var(--badge-size);
+  height: var(--badge-size);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--badge-shadow);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+.treatment-icon svg{ width: 32px; height: 32px; color: var(--icon-tint); }
+
+.treatment-content h3{
+  font-size: 20px; font-weight:700; color:#fff; margin-bottom:12px; letter-spacing:.06em;
+}
+.treatment-content p{
+  color:#fff; opacity:.92; line-height:1.7; font-size:14px;
+}
+
+/* ==================== SECCIÓN ABOUT ==================== */
+.about-section{
+  min-height:100vh; display:flex; background:#f9fafb;
+}
+.about-content{
+  flex:1; padding:80px 64px; display:flex; flex-direction:column; justify-content:center;
+}
+.about-title{ font-size:3rem; font-weight:300; color: var(--rose); margin-bottom:24px; }
+.about-credentials{ color:#6b7280; font-size:14px; font-weight:500; margin-bottom:24px; }
+.about-text{ color:#4b5563; line-height:1.6; margin-bottom:24px; }
+.about-btn{
+  display:inline-flex; align-items:center; justify-content:center; padding:12px 32px;
+  border:2px solid var(--rose); color: var(--rose); font-weight:500; font-size:14px;
+  letter-spacing:.05em; text-decoration:none; border-radius:50px; transition:.3s; margin-top:32px; width:fit-content;
+}
+.about-btn:hover{ background: var(--rose); color:#fff; }
+.about-image{
+  flex:1; background-image:url('/assets/img/hero.jpg'); background-size:cover; background-position:center; min-height:400px;
+}
+
+/* ==================== BOTÓN WHATSAPP ==================== */
+.whatsapp-btn{
+  position:fixed; bottom:24px; right:24px; width:56px; height:56px; background:#25d366; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,.15);
+  transition:background-color .3s; z-index:50; text-decoration:none;
+}
+.whatsapp-btn:hover{ background:#128c7e; }
+.whatsapp-btn svg{ width:32px; height:32px; color:#fff; }
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeInUp{ from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:none;} }
+@keyframes fadeInLeft{ from{opacity:0; transform:translateX(-30px);} to{opacity:1; transform:none;} }
+.treatment-item{ animation: fadeInLeft .6s ease-out both; }
+.treatment-item:nth-child(2){ animation-delay:.2s; }
+.treatment-item:nth-child(3){ animation-delay:.4s; }
+.treatment-item:nth-child(4){ animation-delay:.6s; }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px){
+  .navbar{ padding:24px; }
+  .nav-menu{ display:none; }
+  .mobile-menu-btn{ display:block; }
+  .hero-title{ font-size:3rem; }
+
+  /* Apilamos las secciones de 2 columnas */
+  .tratamentos-section{ grid-template-columns: 1fr; }
+  .about-section{ flex-direction: column; }
+
+  /* Ajustes de paddings */
+  .tratamentos-content, .about-content{ padding: 48px 32px; }
+  .tratamentos-title, .about-title{ font-size: 2.5rem; }
+
+  /* MUY IMPORTANTE:
+     En mobile ya no hay “unión” vertical entre dos columnas.
+     Para que el badge no se salga de la pantalla, solo lo corremos medio diámetro.
+  */
+  .treatment-item{ padding-left: calc(var(--badge-size) / 2 + 20px); }
+  .treatment-icon{
+    left: calc(-1 * (var(--badge-size) / 2));
+  }
+}
+
+@media (max-width: 768px){
+  .hero-title{ font-size:2.5rem; }
+  .tratamentos-content, .about-content{ padding: 32px 24px; }
+  .tratamentos-title, .about-title{ font-size:2rem; }
+
+  .treatment-item{ margin-bottom:32px; }
+  .treatment-icon{ width:56px; height:56px; }
+  .treatment-icon svg{ width:24px; height:24px; }
+}
+
+/* Fin del CSS */
