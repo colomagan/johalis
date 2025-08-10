@@ -44,8 +44,8 @@ function makeService(id, name, category, price, rating) {
     category,
     price,
     rating,
-    mainImage: "assets/main-hero.jpg",
-    gallery: ["assets/gallery-1.jpg", "assets/gallery-2.jpg", "assets/gallery-3.jpg"],
+    mainImage: "/assets/main-hero.png",
+    gallery: ["/assets/gallery-1.png", "/assets/gallery-2.png", "/assets/gallery-3.png"],
     description: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis magnam aliquid. Cupiditate!",
       "Aut ipsam consequuntur non rem tenetur dolore consequatur ducimus a labore excepturi quae nisi, quisquam, maxime voluptates magnam aliquid.",
@@ -65,12 +65,16 @@ let selected = data.categories[0].services[1] // "Mini facelift" por defecto
 // Utilidades
 const $ = (sel, root = document) => root.querySelector(sel)
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel))
-const formatPrice = n => n.toLocaleString("en-US", { style: "currency", currency: "USD" })
+const formatPrice = (n) => n.toLocaleString("en-US", { style: "currency", currency: "USD" })
+const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false
+const EASING = "cubic-bezier(0.22, 1, 0.36, 1)"
+const DURATION = 280
 
 // Render inicial
 document.addEventListener("DOMContentLoaded", () => {
   renderAccordion()
   renderServiceSelect()
+  // Inicial sin animación
   renderDetail(selected)
   bindForm()
 })
@@ -97,30 +101,14 @@ function renderAccordion() {
         </svg>
       </span>
     `
-    header.addEventListener("click", () => {
-      // Cerrar otros
-      $$(".accordion-item", container).forEach(el => {
-        if (el !== item) {
-          el.dataset.open = "false"
-          $(".acc-header", el).setAttribute("aria-expanded", "false")
-          $(".acc-body", el).hidden = true
-        }
-      })
-      // Toggle actual
-      const open = item.dataset.open === "true"
-      item.dataset.open = open ? "false" : "true"
-      header.setAttribute("aria-expanded", open ? "false" : "true")
-      body.hidden = open
-    })
 
     // Body
     const body = document.createElement("div")
     body.className = "acc-body"
-    body.hidden = idx !== 0
 
     const ul = document.createElement("ul")
     ul.className = "service-list"
-    cat.services.forEach(svc => {
+    cat.services.forEach((svc) => {
       const li = document.createElement("li")
       const btn = document.createElement("button")
       btn.type = "button"
@@ -139,59 +127,179 @@ function renderAccordion() {
       body.appendChild(div)
     }
 
+    // Click header: animar apertura/cierre con slide
+    header.addEventListener("click", () => {
+      $$(".accordion-item", container).forEach((el) => {
+        const b = $(".acc-body", el)
+        if (el !== item && el.dataset.open === "true") {
+          el.dataset.open = "false"
+          $(".acc-header", el).setAttribute("aria-expanded", "false")
+          slideHeight(b, false)
+        }
+      })
+
+      const open = item.dataset.open === "true"
+      item.dataset.open = open ? "false" : "true"
+      header.setAttribute("aria-expanded", open ? "false" : "true")
+      slideHeight(body, !open)
+    })
+
     item.appendChild(header)
     item.appendChild(body)
     container.appendChild(item)
+
+    // Estado inicial con altura calculada
+    requestAnimationFrame(() => {
+      if (item.dataset.open === "true") {
+        setOpenHeight(body)
+        body.style.opacity = "1"
+      } else {
+        body.style.height = "0px"
+        body.style.opacity = "0"
+      }
+    })
   })
+}
+
+// Transición de altura "slide"
+function slideHeight(el, open) {
+  if (prefersReduced) {
+    // Sin animación
+    if (open) {
+      setOpenHeight(el)
+      el.style.opacity = "1"
+    } else {
+      el.style.height = "0px"
+      el.style.opacity = "0"
+    }
+    return
+  }
+
+  const startHeight = el.getBoundingClientRect().height
+  const endHeight = open ? getAutoHeight(el) : 0
+
+  el.style.overflow = "hidden"
+  el.style.transition = `height ${DURATION}ms ${EASING}, opacity 160ms linear`
+  el.style.height = `${startHeight}px`
+  el.style.opacity = open ? "1" : "0"
+
+  // Forzar reflow
+  void el.offsetHeight
+
+  el.style.height = `${endHeight}px`
+
+  const clean = () => {
+    el.style.transition = ""
+    el.style.overflow = ""
+    if (open) {
+      setOpenHeight(el)
+    } else {
+      el.style.height = "0px"
+    }
+    el.removeEventListener("transitionend", clean)
+  }
+  el.addEventListener("transitionend", clean)
+}
+
+// Altura "auto" calculada
+function getAutoHeight(el) {
+  const prev = el.style.height
+  el.style.height = "auto"
+  const h = el.getBoundingClientRect().height
+  el.style.height = prev
+  return h
+}
+function setOpenHeight(el) {
+  el.style.height = "auto"
 }
 
 function selectService(svc) {
   selected = svc
-  // Resaltar en lista
-  $$(".service-btn").forEach(b => b.classList.toggle("active", b.textContent === svc.name))
+  // Resaltar en lista con animación
+  $$(".service-btn").forEach((b) => b.classList.toggle("active", b.textContent === svc.name))
   // Sincronizar select del formulario
   const select = $("#service-select")
   if (select) select.value = svc.id
-  // Render detalle
-  renderDetail(svc)
+  // Transición de detalle
+  swapDetail(svc)
 }
 
 function renderServiceSelect() {
   const select = $("#service-select")
   select.innerHTML = `<option value="" disabled>Type of service</option>`
-  data.categories.flatMap(c => c.services).forEach(s => {
-    const opt = document.createElement("option")
-    opt.value = s.id
-    opt.textContent = s.name
-    select.appendChild(opt)
-  })
+  data.categories
+    .flatMap((c) => c.services)
+    .forEach((s) => {
+      const opt = document.createElement("option")
+      opt.value = s.id
+      opt.textContent = s.name
+      select.appendChild(opt)
+    })
   // Valor inicial
   select.value = selected.id
-  select.addEventListener("change", e => {
+  select.addEventListener("change", (e) => {
     const id = e.target.value
-    const svc = data.categories.flatMap(c => c.services).find(s => s.id === id)
+    const svc = data.categories.flatMap((c) => c.services).find((s) => s.id === id)
     if (svc) selectService(svc)
   })
 }
 
+// Render inicial sin animación
 function renderDetail(svc) {
   const root = $("#detail")
-  root.innerHTML = `
-    <div class="detail-header">
-     <div class="detail-meta">
-  <span class="category-text">${svc.category}</span>
-  <h1 class="detail-title">${svc.name}</h1>
-</div>
-     <div class="detail-right">
-  <div class="stars-wrapper">
-    <div class="stars" aria-label="Rating ${svc.rating} de 5">
-      ${renderStars(svc.rating)}
-    </div>
-   
-  </div>
-  <div class="price">${formatPrice(svc.price)}</div>
-</div>
+  root.innerHTML = `<div class="detail-card in">${getDetailMarkup(svc)}</div>`
+}
 
+// Swap con animación (crossfade + shared-axis)
+function swapDetail(svc) {
+  const root = $("#detail")
+  const current = root.querySelector(".detail-card")
+
+  const next = document.createElement("div")
+  next.className = "detail-card"
+  next.innerHTML = getDetailMarkup(svc)
+  root.appendChild(next)
+
+  if (prefersReduced) {
+    // Reemplazo instantáneo si reduce motion
+    if (current) root.removeChild(current)
+    next.classList.add("in")
+    return
+  }
+
+  // Inicio de animación
+  requestAnimationFrame(() => {
+    // salir el actual
+    if (current) {
+      current.classList.add("leaving")
+      current.addEventListener(
+        "transitionend",
+        () => {
+          current?.parentElement?.removeChild(current)
+        },
+        { once: true },
+      )
+    }
+    // entrar el nuevo
+    next.classList.add("in")
+  })
+}
+
+function getDetailMarkup(svc) {
+  return `
+    <div class="detail-header">
+      <div class="detail-meta">
+        <span class="category-text">${svc.category}</span>
+        <h1 class="detail-title">${svc.name}</h1>
+      </div>
+      <div class="detail-right">
+        <div class="stars-wrapper">
+          <div class="stars" aria-label="Rating ${svc.rating} de 5">
+            ${renderStars(svc.rating)}
+          </div>
+        </div>
+        <div class="price">${formatPrice(svc.price)}</div>
+      </div>
     </div>
 
     <div class="main-image">
@@ -199,21 +307,26 @@ function renderDetail(svc) {
     </div>
 
     <div class="prose">
-      ${svc.description.map(p => `<p>${p}</p>`).join("")}
+      ${svc.description.map((p) => `<p>${p}</p>`).join("")}
     </div>
 
     <div class="gallery">
-      ${svc.gallery.slice(0,3).map((g,i)=>`
-        <div class="gitem"><img src="${g}" alt="Galería ${i+1}" width="500" height="330"></div>
-      `).join("")}
+      ${svc.gallery
+        .slice(0, 3)
+        .map(
+          (g, i) => `
+        <div class="gitem"><img src="${g}" alt="Galería ${i + 1}" width="500" height="330"></div>
+      `,
+        )
+        .join("")}
     </div>
 
     <div class="features">
       <ul>
-        ${svc.features.map(f => featureLi(f)).join("")}
+        ${svc.features.map((f) => featureLi(f)).join("")}
       </ul>
       <ul>
-        ${svc.features.map(f => featureLi(f)).join("")}
+        ${svc.features.map((f) => featureLi(f)).join("")}
       </ul>
     </div>
 
@@ -225,20 +338,20 @@ function renderDetail(svc) {
   `
 }
 
-function renderStars(rating){
+function renderStars(rating) {
   const full = Math.floor(rating)
   const half = rating - full >= 0.5
-  return Array.from({length:5}, (_,i)=>{
-    const filled = i < full || (i===full && half)
+  return Array.from({ length: 5 }, (_, i) => {
+    const filled = i < full || (i === full && half)
     return `
-      <svg class="star ${filled?"filled":""}" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" ${filled?'fill="currentColor"':''}/>
+      <svg class="star ${filled ? "filled" : ""}" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" ${filled ? 'fill="currentColor"' : ""}/>
       </svg>
     `
   }).join("")
 }
 
-function featureLi(text){
+function featureLi(text) {
   return `
     <li>
       <span class="check" aria-hidden="true">
@@ -252,20 +365,20 @@ function featureLi(text){
   `
 }
 
-function bindForm(){
+function bindForm() {
   const form = $("#appointment-form")
-  form.addEventListener("submit", e=>{
+  form.addEventListener("submit", (e) => {
     e.preventDefault()
     const name = $("#name").value.trim()
     const email = $("#email").value.trim()
     const date = $("#date").value
     const svcId = $("#service-select").value
 
-    if(!name || !email || !date || !svcId){
+    if (!name || !email || !date || !svcId) {
       showToast("Completá todos los campos para reservar.")
       return
     }
-    const svc = data.categories.flatMap(c=>c.services).find(s=>s.id===svcId)
+    const svc = data.categories.flatMap((c) => c.services).find((s) => s.id === svcId)
     showToast(`Turno solicitado: ${name} — ${svc?.name || "Servicio"} — ${date}`)
     form.reset()
     // Mantener el servicio seleccionado en el select
@@ -273,10 +386,12 @@ function bindForm(){
   })
 }
 
-function showToast(msg){
+function showToast(msg) {
   const t = $("#toast")
   t.textContent = msg
   t.hidden = false
   clearTimeout(showToast._timer)
-  showToast._timer = setTimeout(()=>{ t.hidden = true }, 3000)
+  showToast._timer = setTimeout(() => {
+    t.hidden = true
+  }, 3000)
 }
