@@ -145,6 +145,12 @@ body {
   place-items: center;
   z-index: 2;
 }
+
+.treatment-icon img{
+  width: 60%;   /* probá 60–70% según el PNG */
+  height: auto;
+  display: block;
+}
 .treatment-icon svg{ width: 32px; height: 32px; color: var(--icon-tint); }
 
 .treatment-content h3{
