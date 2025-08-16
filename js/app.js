@@ -1,61 +1,344 @@
+// ======================================================
+// Archivo: services.js (completo)
+// Mejora: cada servicio trae sus propias imágenes, descripciones y features
+// SIN cambiar tus líneas de makeService(...) en data.
+// Solo se añadió el objeto perServiceContent y se actualizó makeService para fusionar.
+// ======================================================
+
+// --- Contenidos específicos por servicio (rutas de ejemplo, cámbialas por las reales) ---
+const perServiceContent = {
+  // Ácido Hialurónico
+  "relleno-ojeras": {
+    mainImage: "/assets/services/ojeras/main.jpg",
+    gallery: [
+      "/assets/services/ojeras/1.jpg",
+      "/assets/services/ojeras/2.jpg",
+      "/assets/services/ojeras/3.jpg",
+    ],
+    description: [
+      "Mejora el hundimiento y la sombra en el área periocular reduciendo el aspecto cansado.",
+      "Técnica segura con enfoque personalizado para resultados naturales e inmediatos.",
+    ],
+    features: [
+      "Duración: 9–12 meses",
+      "Procedimiento: 30–45 min",
+      "Downtime mínimo",
+      "Revisión a los 7–15 días",
+    ],
+  },
+  "relleno-labios": {
+    mainImage: "/assets/services/labios/main.jpg",
+    gallery: [
+      "/assets/services/labios/1.jpg",
+      "/assets/services/labios/2.jpg",
+    ],
+    description: [
+      "Perfilado, hidratación y volumen armónico sin efecto sobrecorregido.",
+      "Definición de arco de cupido y comisuras con técnicas avanzadas.",
+    ],
+    features: [
+      "Duración: 9–12 meses",
+      "Anestesia tópica incluida",
+      "Plan de retoque opcional",
+      "Evaluación fotográfica previa",
+    ],
+  },
+  "rinomodelacion": {
+    mainImage: "/assets/services/rino/main.jpg",
+    gallery: [
+      "/assets/services/rino/1.jpg",
+      "/assets/services/rino/2.jpg",
+      "/assets/services/rino/3.jpg",
+    ],
+    description: [
+      "Corrección de dorso, punta y proyección sin cirugía con resultados inmediatos.",
+      "Armonización del perfil manteniendo proporciones faciales.",
+    ],
+    features: [
+      "Duración: 12–18 meses",
+      "No requiere quirófano",
+      "Evaluación de perfil",
+      "Seguimiento post-procedimiento",
+    ],
+  },
+  "relleno-pomulos": {
+    mainImage: "/assets/services/pomulos/main.jpg",
+    gallery: [
+      "/assets/services/pomulos/1.jpg",
+      "/assets/services/pomulos/2.jpg",
+    ],
+    description: [
+      "Reposición de volumen malar para efecto ‘lifting’ sin cirugía.",
+      "Mejora la proyección del tercio medio facial.",
+    ],
+    features: [
+      "Duración: 12–18 meses",
+      "Resultados naturales",
+      "Plan por etapas disponible",
+      "Baja inflamación",
+    ],
+  },
+  "contorno-mandibular": {
+    mainImage: "/assets/services/mandibular/main.jpg",
+    gallery: [
+      "/assets/services/mandibular/1.jpg",
+      "/assets/services/mandibular/2.jpg",
+    ],
+    description: [
+      "Definición de la línea mandibular para un aspecto firme y estilizado.",
+      "Armoniza el contorno del tercio inferior.",
+    ],
+    features: [
+      "Duración: 12–18 meses",
+      "Moldeado preciso",
+      "Análisis de perfil 2D/3D",
+      "Recuperación rápida",
+    ],
+  },
+  "proyeccion-menton": {
+    mainImage: "/assets/services/menton/main.jpg",
+    gallery: [
+      "/assets/services/menton/1.jpg",
+      "/assets/services/menton/2.jpg",
+    ],
+    description: [
+      "Mejora la armonía facial corrigiendo retrognatia leve.",
+      "Aporta definición y equilibrio al perfil.",
+    ],
+    features: [
+      "Duración: 12–18 meses",
+      "Resultados inmediatos",
+      "Control a los 15 días",
+      "Plan de mantenimiento",
+    ],
+  },
+
+  // Bioestimuladores de Colágeno
+  "sculptra": {
+    mainImage: "/assets/services/sculptra/main.jpg",
+    gallery: [
+      "/assets/services/sculptra/1.jpg",
+      "/assets/services/sculptra/2.jpg",
+    ],
+    description: [
+      "Estimula la producción de colágeno para una mejora progresiva de firmeza y calidad de piel.",
+      "Ideal para flacidez leve a moderada en rostro y cuerpo.",
+    ],
+    features: [
+      "Efecto gradual (6–12 semanas)",
+      "2–3 sesiones recomendadas",
+      "Resultados 18–24 meses",
+      "Apto para varias zonas",
+    ],
+  },
+  "radiesse": {
+    mainImage: "/assets/services/radiesse/main.jpg",
+    gallery: [
+      "/assets/services/radiesse/1.jpg",
+    ],
+    description: [
+      "Hidroxiapatita cálcica con efecto tensor inmediato y bioestimulación sostenida.",
+      "Indicado para rostro, cuello y manos.",
+    ],
+    features: [
+      "Duración: 12–18 meses",
+      "Definición y tensado",
+      "Se puede diluir para skin-boosting",
+      "Recuperación rápida",
+    ],
+  },
+  "harmonyca": {
+    mainImage: "/assets/services/harmonyca/main.jpg",
+    gallery: [
+      "/assets/services/harmonyca/1.jpg",
+      "/assets/services/harmonyca/2.jpg",
+    ],
+    description: [
+      "Relleno híbrido: soporte estructural + bioestimulación simultánea.",
+      "Mejora textura y contorno con enfoque balanceado.",
+    ],
+    features: [
+      "Resultados equilibrados",
+      "Revisión a 4–6 semanas",
+      "Plan por zonas",
+      "Mínimo downtime",
+    ],
+  },
+
+  // Toxina Botulínica
+  "hiperhidrosis": {
+    mainImage: "/assets/services/hiperhidrosis/main.jpg",
+    gallery: [
+      "/assets/services/hiperhidrosis/1.jpg",
+      "/assets/services/hiperhidrosis/2.jpg",
+    ],
+    description: [
+      "Bloqueo temporal de glándulas sudoríparas para reducir la sudoración excesiva.",
+      "Aplicable en axilas, manos y pies.",
+    ],
+    features: [
+      "Efecto 6–9 meses",
+      "Resultado a 3–7 días",
+      "Anestesia tópica",
+      "Rápida reincorporación",
+    ],
+  },
+  "bruxismo": {
+    mainImage: "/assets/services/bruxismo/main.jpg",
+    gallery: [
+      "/assets/services/bruxismo/1.jpg",
+    ],
+    description: [
+      "Relaja el músculo masetero para disminuir tensión, dolor y desgaste dental.",
+      "Puede estilizar el tercio inferior del rostro.",
+    ],
+    features: [
+      "Efecto 3–6 meses",
+      "Mejora cefaleas tensionales",
+      "Aplicación precisa",
+      "Sin baja laboral",
+    ],
+  },
+  "tercio-superior": {
+    mainImage: "/assets/services/tercio-superior/main.jpg",
+    gallery: [
+      "/assets/services/tercio-superior/1.jpg",
+      "/assets/services/tercio-superior/2.jpg",
+    ],
+    description: [
+      "Suaviza líneas de expresión en frente, entrecejo y patas de gallo.",
+      "Mantiene movilidad natural con aspecto descansado.",
+    ],
+    features: [
+      "Efecto a 3–5 días",
+      "Duración 3–4 meses",
+      "Retoque opcional",
+      "Apto para primera vez",
+    ],
+  },
+
+  // Aparatología
+  "ultraformer-iii": {
+    mainImage: "/assets/services/ultraformer/main.jpg",
+    gallery: [
+      "/assets/services/ultraformer/1.jpg",
+      "/assets/services/ultraformer/2.jpg",
+    ],
+    description: [
+      "Ultrasonido micro y macro focalizado para lifting facial y contorno corporal.",
+      "Tensado progresivo sin cirugía ni fotosensibilidad.",
+    ],
+    features: [
+      "Efecto 8–12 semanas",
+      "1–2 sesiones/año",
+      "Protocolos por zona",
+      "Sin downtime relevante",
+    ],
+  },
+  "lumenis-stellar-m22": {
+    mainImage: "/assets/services/m22/main.jpg",
+    gallery: [
+      "/assets/services/m22/1.jpg",
+      "/assets/services/m22/2.jpg",
+      "/assets/services/m22/3.jpg",
+    ],
+    description: [
+      "Plataforma láser multifunción para manchas, rojeces y textura.",
+      "Combina tecnologías IPL y ResurFX para resultados visibles.",
+    ],
+    features: [
+      "Mejora tono y poro",
+      "Plan 3–4 sesiones",
+      "Resultados desde 1ª sesión",
+      "Protocolos combinados",
+    ],
+  },
+}
+
 // Datos
-const data = {
+const data = { 
   categories: [
     {
       id: "facial",
-      name: "Facial Procedures",
+      name: "Ácido Hialurónico",
       services: [
-        makeService("facelift", "Facelift", "Facial procedures", 189.5, 4.5),
-        makeService("mini-facelift", "Mini facelift", "Facial procedures", 159.5, 4.8),
-        makeService("eyelid-lift", "Eyelid lift", "Facial procedures", 139.0, 4.6),
-        makeService("brow-lift", "Brow lift", "Facial procedures", 129.0, 4.2),
-        makeService("rhinoplasty", "Rhinoplasty", "Facial procedures", 299.0, 4.9),
-        makeService("chin-implants", "Chin implants", "Facial procedures", 219.0, 4.4),
-        makeService("facial-fillers", "Facial fillers", "Facial procedures", 119.0, 4.3),
+        makeService("relleno-facial", "Rellenos faciales (Ácido Hialuronico )", "Facial procedures", 150.0, 4.7),
+        makeService("rinomodelacion", "Rinomodelación", "Facial procedures", 170.0, 4.9),
+        makeService("relleno-labios", "Relleno de labios", "Facial procedures", 160.0, 4.8),
+        makeService("relleno-ojeras", "Correccion de ojeras", "Facial procedures", 150.0, 4.7),
+        makeService("relleno-pomulos", "Relleno de pómulos", "Facial procedures", 155.0, 4.6),
+        makeService("proyeccion-menton", "Proyección de mentón", "Facial procedures", 175.0, 4.7),
+        makeService("contorno-mandibular", "Armonización facial ( Full Face)", "Facial procedures", 165.0, 4.5),
+      ],
+    },
+    {
+      id: "breast",
+      name: "Toxina Botulínica (BOTOX)",
+      services: [
+        makeService("tercio-superior", "Arrugas del tercio superior (frente, entrecejos y periocular)", "Botox procedures", 190.0, 4.9),
+        makeService("bruxismo", "Bruxismo (tensión y dolor mandibular)", "Botox procedures", 180.0, 4.7),
+        makeService("hiperhidrosis", "Hiperhidrosis axilar", "Botox procedures", 200.0, 4.8),
       ],
     },
     {
       id: "body",
-      name: "Body Procedures",
-      services: [makeService("lipo", "Liposuction", "Body procedures", 399.0, 4.7)],
+      name: "Bioestimuladores de Colágeno",
+      services: [
+        makeService("sculptra", "Sculptra", "Body procedures", 300.0, 4.8),
+        makeService("radiesse", "Radiesse", "Body procedures", 280.0, 4.7),
+        makeService("radiesse", "Facetem", "Body procedures", 280.0, 4.7),
+        makeService("harmonyca", "HarmonyCa", "Body procedures", 290.0, 4.7),
+      ],
     },
     {
-      id: "breast",
-      name: "Breast procedures",
-      services: [makeService("augmentation", "Breast augmentation", "Breast procedures", 499.0, 4.6)],
-    },
-    {
-      id: "buttocks",
-      name: "Buttocks",
-      services: [makeService("buttocks-lift", "Buttocks lift", "Buttocks", 349.0, 4.1)],
+      id: "new",
+      name: "Skimboosters",
+      services: [
+        makeService("NCTF", "NCTF HA 35 de Filorga", "Body procedures", 300.0, 4.8),
+        makeService("Skinvive", "Skinvive  by Juvederm", "Body procedures", 280.0, 4.7),
+        makeService("Restyline", "Restyline", "Body procedures", 280.0, 4.7),
+      ],
     },
     {
       id: "skin",
-      name: "Skin care",
-      services: [makeService("peel", "Chemical peel", "Skin care", 89.0, 4.0)],
+      name: "Tecnología Medica",
+      services: [
+        makeService("ultraformer-iii", "Ultraformer III – Ultrasonido micro y macro focalizado para lifting facial, contorno corporal y reducción de grasa localizada", "Skin care", 350.0, 4.9),
+        makeService("lumenis-stellar-m22", "Lumenis Stellar M22 – Plataforma láser multifunción para manchas, rejuvenecimiento y mejora de la textura de la piel", "Skin care", 320.0, 4.8),
+      ],
     },
   ],
 }
 
 function makeService(id, name, category, price, rating) {
+  // Defaults por si falta algún campo
+  const defaults = {
+    mainImage: "/assets/main-hero.png",
+    gallery: ["/assets/gallery-1.png", "/assets/gallery-2.png", "/assets/gallery-3.png"],
+    description: [
+      "Descripción pendiente de cargar.",
+      "Agrega contenido único para este servicio en perServiceContent.",
+    ],
+    features: [
+      "Beneficio 1",
+      "Beneficio 2",
+      "Beneficio 3",
+      "Beneficio 4",
+    ],
+  }
+
+  // Fusionar con contenidos específicos si existen
+  const specific = perServiceContent[id] || {}
   return {
     id,
     name,
     category,
     price,
     rating,
-    mainImage: "/assets/main-hero.png",
-    gallery: ["/assets/gallery-1.png", "/assets/gallery-2.png", "/assets/gallery-3.png"],
-    description: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis magnam aliquid. Cupiditate!",
-      "Aut ipsam consequuntur non rem tenetur dolore consequatur ducimus a labore excepturi quae nisi, quisquam, maxime voluptates magnam aliquid.",
-    ],
-    features: [
-      "Routine and medical care",
-      "Excellence in Healthcare every",
-      "Building a healthy environment",
-      "cumsan lacus vel facilisis.",
-    ],
+    mainImage: specific.mainImage || defaults.mainImage,
+    gallery: Array.isArray(specific.gallery) && specific.gallery.length ? specific.gallery : defaults.gallery,
+    description: Array.isArray(specific.description) && specific.description.length ? specific.description : defaults.description,
+    features: Array.isArray(specific.features) && specific.features.length ? specific.features : defaults.features,
   }
 }
 
