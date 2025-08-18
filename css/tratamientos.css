@@ -460,6 +460,34 @@ img {
   color: var(--accent);
 }
 
+/* --- NUEVO: subtítulos y listas personalizadas para secciones opcionales --- */
+.subheading {
+  margin: 22px 0 10px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
+.bullet-list {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+.bullet-list li {
+  margin: 6px 0;
+  color: #374151;
+}
+.note {
+  margin: 10px 0;
+  font-weight: 600;
+  color: #374151;
+}
+.hr-light {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: 16px 0;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
