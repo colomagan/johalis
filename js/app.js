@@ -18,13 +18,13 @@ const perServiceContent = {
   detailTitle: "Corrección de Ojeras con Ácido Hialurónico – Mirada Descansada y Rejuvenecida",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/ojeras/portada.jpg",
+  mainImage: "./assets/img/servicios/ojeras/1.jpg",
 
   // Galería (por defecto se muestran hasta 3)
   gallery: [
-    "/assets/services/ojeras/portada.jpg",
-    "/assets/services/ojeras/antes-despues-1.jpg",
-    "/assets/services/ojeras/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/ojeras/2.jpg",
+    "./assets/img/servicios/ojeras/5.jpg",
+    "./assets/img/servicios/ojeras/4.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -88,13 +88,13 @@ const perServiceContent = {
   detailTitle: "Diseño de Labios con Ácido Hialurónico – Volumen y Definición Natural",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/labios/portada.jpg",
+  mainImage: "./assets/img/servicios/labios/2.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/labios/portada.jpg",
-    "/assets/services/labios/antes-despues-1.jpg",
-    "/assets/services/labios/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/labios/3.jpg",
+    "./assets/img/servicios/labios/5.jpg",
+    "./assets/img/servicios/labios/7.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -161,13 +161,13 @@ const perServiceContent = {
   detailTitle: "Rinomodelación con Ácido Hialurónico – Resultados Naturales sin Cirugía",
 
   // 2️⃣ Imagen destacada (antes/después o portada)
-  mainImage: "/assets/services/rino/antes-despues-1.jpg",
+  mainImage: "./assets/img/servicios/rinomodelacion/1.jpg",
 
   // 4️⃣ Imagen secundaria (y una extra opcional)
   gallery: [
-    "/assets/services/rino/antes-despues-1.jpg",         // destacada
-    "/assets/services/rino/procedimiento-ilustrativo.jpg",// secundaria (artística/ilustrativa)
-    "/assets/services/rino/antes-despues-2.jpg"           // extra
+    "./assets/img/servicios/rinomodelacion/5.jpg",         // destacada
+    "./assets/img/servicios/rinomodelacion/3.jpg",// secundaria (artística/ilustrativa)
+    "./assets/img/servicios/rinomodelacion/4.jpg"           // extra
   ],
 
   // 3️⃣ Descripción (intro en dos párrafos)
@@ -300,13 +300,13 @@ const perServiceContent = {
   detailTitle: "Contorno Mandibular con Ácido Hialurónico – Definición y Armonía Facial",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/mandibular/portada.jpg",
+  mainImage: "./assets/img/servicios/contorno_mandibular/1.jpg",
 
   // Galería (por defecto se muestran hasta 3)
   gallery: [
-    "/assets/services/mandibular/portada.jpg",
-    "/assets/services/mandibular/antes-despues-1.jpg",
-    "/assets/services/mandibular/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/contorno_mandibular/2.jpg",
+    "./assets/img/servicios/contorno_mandibular/3.jpg",
+    "./assets/img/servicios/contorno_mandibular/4.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -371,13 +371,13 @@ const perServiceContent = {
   detailTitle: "Proyección de Mentón con Ácido Hialurónico – Perfil Armónico y Definido",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/menton/portada.jpg",
+  mainImage: "./assets/img/servicios/proyeccion_de_menton/1.jpg",
 
   // Galería (por defecto se muestran hasta 3)
   gallery: [
-    "/assets/services/menton/portada.jpg",
-    "/assets/services/menton/antes-despues-1.jpg",
-    "/assets/services/menton/perfil-artistico-o-procedimiento.jpg",
+    "./assets/img/servicios/proyeccion_de_menton/3.jpg",
+    "./assets/img/servicios/proyeccion_de_menton/2.jpg",
+    "./assets/img/servicios/proyeccion_de_menton/4.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -443,13 +443,13 @@ const perServiceContent = {
   detailTitle: "Armonización Facial (Full Face) – Equilibrio y Belleza en Todo el Rostro",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/fullface/portada.jpg",
+  mainImage: "./assets/img/servicios/armonizacion_facial_o_full_fase/1.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/fullface/portada.jpg",
-    "/assets/services/fullface/antes-despues-1.jpg",
-    "/assets/services/fullface/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/armonizacion_facial_o_full_fase/2.jpg",
+    "./assets/img/servicios/armonizacion_facial_o_full_fase/3.jpg",
+    "./assets/img/servicios/armonizacion_facial_o_full_fase/4.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -540,14 +540,15 @@ const perServiceContent = {
   detailTitle: "Toxina Botulínica para Hiperhidrosis Axilar – Control del Exceso de Sudoración",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/hiperhidrosis/portada.jpg",
+   // Imagen principal (portada / antes-después / artística)
+   mainImage: "./assets/img/servicios/bruxismo_hiperhidrosis/2.jpg",
 
-  // Galería (se muestran hasta 3 por defecto)
-  gallery: [
-    "/assets/services/hiperhidrosis/portada.jpg",
-    "/assets/services/hiperhidrosis/antes-despues-1.jpg",
-    "/assets/services/hiperhidrosis/artistica-o-procedimiento.jpg",
-  ],
+   // Galería (se muestran hasta 3 por defecto)
+   gallery: [
+     "./assets/img/servicios/bruxismo_hiperhidrosis/1.jpg",
+     "./assets/img/servicios/bruxismo_hiperhidrosis/4.jpg",
+     "./assets/img/servicios/bruxismo_hiperhidrosis/3.jpg",
+   ],
 
   // Intro (dos párrafos)
   description: [
@@ -666,13 +667,13 @@ const perServiceContent = {
   detailTitle: "Toxina Botulínica para Bruxismo – Alivio de Tensión y Dolor Mandibular",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/bruxismo/portada.jpg",
+  mainImage: "./assets/img/servicios/bruxismo_hiperhidrosis/2.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/bruxismo/portada.jpg",
-    "/assets/services/bruxismo/antes-despues-1.jpg",
-    "/assets/services/bruxismo/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/bruxismo_hiperhidrosis/1.jpg",
+    "./assets/img/servicios/bruxismo_hiperhidrosis/4.jpg",
+    "./assets/img/servicios/bruxismo_hiperhidrosis/3.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -722,7 +723,7 @@ const perServiceContent = {
   detailTitle: "Sculptra® – Bioestimulación de Colágeno para Rejuvenecimiento Natural",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/sculptra/portada.jpg",
+  mainImage: "./assets/img/servicios/sculptra/1.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
@@ -1006,13 +1007,13 @@ const perServiceContent = {
   detailTitle: "Skinboosters – Hidratación Profunda, Luminosidad y Revitalización de la Piel",
 
   // Imagen principal
-  mainImage: "/assets/services/skinboosters/portada.jpg",
+  mainImage: "./assets/img/servicios/skimbooster/1.jpg",
 
   // Galería
   gallery: [
-    "/assets/services/skinboosters/portada.jpg",
-    "/assets/services/skinboosters/antes-despues-1.jpg",
-    "/assets/services/skinboosters/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/skimbooster/2.jpg",
+    "./assets/img/servicios/skimbooster/3.jpg",
+    "./assets/img/servicios/skimbooster/4.jpg",
   ],
 
   // Descripción (párrafos)
@@ -1301,13 +1302,13 @@ const perServiceContent = {
   detailTitle: "Enzimas Recombinantes – Reducción de Grasa Localizada y Fibrosis",
 
   // Imagen principal
-  mainImage: "/assets/services/enzimas-recombinantes/portada.jpg",
+  mainImage: "./assets/img/servicios/enzimas_recombinantes/1.jpg",
 
   // Galería (hasta 3)
   gallery: [
-    "/assets/services/enzimas-recombinantes/portada.jpg",
-    "/assets/services/enzimas-recombinantes/antes-despues-1.jpg",
-    "/assets/services/enzimas-recombinantes/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/enzimas_recombinantes/2.jpg",
+    "./assets/img/servicios/enzimas_recombinantes/3.jpg",
+    "./assets/img/servicios/enzimas_recombinantes/4.jpg",
   ],
 
   // Intro (párrafos)
