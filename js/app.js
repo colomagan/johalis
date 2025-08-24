@@ -1078,13 +1078,13 @@ const perServiceContent = {
   detailTitle: "Ultraformer III – Lifting, Tensado y Reducción de Grasa Localizada sin Cirugía",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/ultraformer/portada.jpg",
+  mainImage: "./assets/img/servicios/ultraformer/1.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/ultraformer/portada.jpg",
-    "/assets/services/ultraformer/rostro-cuerpo.jpg",
-    "/assets/services/ultraformer/antes-despues-1.jpg",
+    "./assets/img/servicios/ultraformer/4.jpg",
+    "./assets/img/servicios/ultraformer/2.jpg",
+    "./assets/img/servicios/ultraformer/3.jpg",
   ],
 
   // Intro
@@ -1158,7 +1158,7 @@ const perServiceContent = {
   detailTitle: "Stellar M22 IPL – Luz Pulsada Intensa para Manchas, Rojeces y Rejuvenecimiento de la Piel",
 
   // Imagen principal (portada / antes-después / equipo)
-  mainImage: "/assets/services/m22/portada.jpg",
+  mainImage: "./assets/img/servicios/stellar/1.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
@@ -1382,7 +1382,7 @@ const perServiceContent = {
   detailTitle: "PDRN – Terapia con “Esperma de Salmón” para Regeneración y Rejuvenecimiento",
 
   // Imagen principal
-  mainImage: "/assets/services/pdrn/portada.jpg",
+  mainImage: "./assets/img/servicios/pdrn/1.jpg",
 
   // Galería (hasta 3)
   gallery: [
@@ -1456,7 +1456,7 @@ const perServiceContent = {
   detailTitle: "Exosomas – Terapia Avanzada de Regeneración y Rejuvenecimiento Celular",
 
   // Imagen principal
-  mainImage: "/assets/services/exosomas/portada.jpg",
+  mainImage: "./assets/img/servicios/exosomas/1.jpg",
 
   // Galería (hasta 3)
   gallery: [
@@ -1532,7 +1532,7 @@ const perServiceContent = {
   detailTitle: "Plasma Rico en Plaquetas (PRP) – Regeneración Celular y Rejuvenecimiento Natural",
 
   // Imagen principal
-  mainImage: "/assets/services/prp/portada.jpg",
+  mainImage: "./assets/img/servicios/plasma/1.jpg",
 
   // Galería (hasta 3)
   gallery: [
@@ -1982,11 +1982,13 @@ function getDetailMarkup(svc) {
 
   const galleryHtml = hasGallery
     ? `
-      <div class="gallery">
-        ${svc.gallery.slice(0, 3).map((g, i) => `
-          <div class="gitem"><img src="${g}" alt="Galería ${i + 1}" width="500" height="330"></div>
-        `).join("")}
-      </div>
+   <div class="gallery">
+  ${svc.gallery.slice(0, 3).map((g, i) => `
+    <div class="gitem"><img class="zoomable" src="${g}" alt="${title} – imagen ${i + 1}"></div>
+  `).join("")}
+</div>
+
+
     `
     : ""
 
@@ -2029,9 +2031,11 @@ function getDetailMarkup(svc) {
       </div>
     </div>
 
-    <div class="main-image">
-      <img src="${svc.mainImage}" alt="${title} image" width="900" height="560">
-    </div>
+ <div class="main-image">
+  <img class="zoomable" src="${svc.mainImage}" alt="${title}">
+</div>
+
+
 
     ${introHtml}
     ${bulletsTopHtml}
@@ -2091,6 +2095,125 @@ function bindForm() {
     $("#service-select").value = selected.id
   })
 }
+
+// ====== Lightbox de imagen con navegación (main + gallery) ======
+(function initImageLightbox() {
+  const modal = document.getElementById('img-modal');
+  const modalImg = document.getElementById('img-modal-img');
+  const btnPrev = document.getElementById('img-modal-prev');
+  const btnNext = document.getElementById('img-modal-next');
+  const btnClose = document.getElementById('img-modal-close');
+
+  if (!modal || !modalImg || !btnClose) return;
+
+  const state = { list: [], index: 0 };
+
+  // Obtiene la lista de imágenes del detalle actual: primero main, luego gallery
+  const computeList = () => {
+    const scope = document.getElementById('detail');
+    if (!scope) return [];
+    const nodes = scope.querySelectorAll('.main-image img, .gallery img');
+    // Quitar duplicados por src manteniendo el orden
+    const map = new Map();
+    nodes.forEach((n) => {
+      const src = n.currentSrc || n.src;
+      if (!src) return;
+      if (!map.has(src)) map.set(src, { src, alt: n.alt || '' });
+    });
+    return Array.from(map.values());
+  };
+
+  const toggleArrows = () => {
+    const hasPrev = state.index > 0;
+    const hasNext = state.index < state.list.length - 1;
+    if (btnPrev) btnPrev.hidden = !hasPrev;
+    if (btnNext) btnNext.hidden = !hasNext;
+  };
+
+  const render = () => {
+    const item = state.list[state.index];
+    if (!item) return close();
+    modalImg.src = item.src;
+    modalImg.alt = item.alt;
+    toggleArrows();
+  };
+
+  const openFromIndex = (idx) => {
+    state.list = computeList();
+    if (!state.list.length) return;
+    state.index = Math.max(0, Math.min(idx, state.list.length - 1));
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    render();
+  };
+
+  const openFromImg = (imgEl) => {
+    const src = imgEl.currentSrc || imgEl.src;
+    const list = computeList();
+    if (!list.length) return;
+    const idx = list.findIndex((i) => i.src === src);
+    state.list = list;
+    state.index = idx === -1 ? 0 : idx;
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    render();
+  };
+
+  const close = () => {
+    modal.setAttribute('hidden', '');
+    modalImg.src = '';
+    document.body.style.overflow = '';
+  };
+
+  // Eventos UI
+  btnClose.addEventListener('click', close);
+
+  // Cerrar al clicar fuera de la imagen
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) close();
+  });
+
+  if (btnPrev) btnPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (state.index > 0) {
+      state.index -= 1;
+      render();
+    }
+  });
+
+  if (btnNext) btnNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (state.index < state.list.length - 1) {
+      state.index += 1;
+      render();
+    }
+  });
+
+  // Teclado: Esc, ←, →
+  document.addEventListener('keydown', (e) => {
+    if (modal.hasAttribute('hidden')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft' && state.index > 0) {
+      state.index -= 1; render();
+    }
+    if (e.key === 'ArrowRight' && state.index < state.list.length - 1) {
+      state.index += 1; render();
+    }
+  });
+
+  // Delegación: abrir desde cualquier <img.zoomable> renderizado en el detalle
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('img.zoomable');
+    if (!img) return;
+    e.preventDefault();
+    openFromImg(img);
+  }, { passive: true });
+
+  // (Opcional) Si alguna vez quisieras abrir el modal en la primera imagen por código:
+  // openFromIndex(0)
+})();
+
+
 
 function showToast(msg) {
   const t = $("#toast")
