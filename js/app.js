@@ -727,7 +727,7 @@ const perServiceContent = {
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/sculptra/artistica-o-procedimiento.jpg",
+
   ],
 
   // Intro (dos párrafos)
@@ -804,7 +804,6 @@ const perServiceContent = {
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/radiesse/portada.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -869,7 +868,7 @@ const perServiceContent = {
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/facetem/portada.jpg",
+   
   ],
 
   // Intro (dos párrafos)
@@ -1378,7 +1377,7 @@ mainImage: "./assets/img/servicios/mesoterapia_lipolitica/2.jpg",
 
   // Galería (hasta 3)
   gallery: [
-    "/assets/services/pdrn/portada.jpg",
+
   ],
 
   // Intro (párrafos)
@@ -1450,7 +1449,6 @@ mainImage: "./assets/img/servicios/mesoterapia_lipolitica/2.jpg",
 
   // Galería (hasta 3)
   gallery: [
-    "/assets/services/exosomas/portada.jpg",
   ],
 
   // Intro (párrafos)
@@ -1603,63 +1601,63 @@ const data = {
       id: "facial",
       name: "Rellenos faciales (Ácido Hialuronico )",
       services: [
-        makeService("rinomodelacion", "Rinomodelación", "Facial procedures", 170.0, 4.9),
-        makeService("diseño-labios", "Diseño de labios", "Facial procedures", 160.0, 4.8),
-        makeService("relleno-ojeras", "Correccion de ojeras", "Facial procedures", 150.0, 4.7),
-        makeService("contorno-mandibular", "Contorno mandibular", "Facial procedures", 155.0, 4.6),
-        makeService("proyeccion-menton", "Proyección de mentón", "Facial procedures", 175.0, 4.7),
-        makeService("armonizacion-facial", "Armonización facial (Full Face)", "Facial procedures", 0.0, 4.9), // ← nuevo
+        makeService("rinomodelacion", "Rinomodelación", "Procedimientos faciales", 170.0, 4.9),
+        makeService("diseño-labios", "Diseño de labios", "Procedimientos faciales", 160.0, 4.8),
+        makeService("relleno-ojeras", "Correccion de ojeras", "Procedimientos faciales", 150.0, 4.7),
+        makeService("contorno-mandibular", "Contorno mandibular", "Procedimientos faciales", 155.0, 4.6),
+        makeService("proyeccion-menton", "Proyección de mentón", "Procedimientos faciales", 175.0, 4.7),
+        makeService("armonizacion-facial", "Armonización facial (Full Face)", "Procedimientos faciales", 0.0, 4.9), // ← nuevo
       ],
     },
     {
       id: "breast",
       name: "Toxina Botulínica (BOTOX)",
       services: [
-        makeService("tercio-superior", "Arrugas del tercio superior (frente, entrecejos y periocular)", "Botox procedures", 190.0, 4.9),
-        makeService("bruxismo", "Bruxismo (tensión y dolor mandibular)", "Botox procedures", 180.0, 4.7),
-        makeService("hiperhidrosis", "Hiperhidrosis axilar", "Botox procedures", 200.0, 4.8),
+        makeService("tercio-superior", "Arrugas del tercio superior (frente, entrecejos y periocular)", "Procedimientos de Botox", 190.0, 4.9),
+        makeService("bruxismo", "Bruxismo (tensión y dolor mandibular)", "Procedimientos de Botox", 180.0, 4.7),
+        makeService("hiperhidrosis", "Hiperhidrosis axilar", "Procedimientos de Botox", 200.0, 4.8),
       ],
     },
     {
       id: "body",
       name: "Bioestimuladores de Colágeno",
       services: [
-        makeService("sculptra", "Sculptra", "Body procedures", 300.0, 4.8),
-        makeService("radiesse", "Radiesse", "Body procedures", 280.0, 4.7),
-        makeService("facetem", "Facetem", "Body procedures", 280.0, 4.7), // id duplicado según tu lista (puedes cambiarlo luego)
-        makeService("harmonyca", "HarmonyCa", "Body procedures", 290.0, 4.7),
+        makeService("sculptra", "Sculptra", "Procedimientos corporales", 300.0, 4.8),
+        makeService("radiesse", "Radiesse", "Procedimientos corporales", 280.0, 4.7),
+        makeService("facetem", "Facetem", "Procedimientos corporales", 280.0, 4.7), // id duplicado según tu lista (puedes cambiarlo luego)
+        makeService("harmonyca", "HarmonyCa", "Procedimientos corporales", 290.0, 4.7),
       ],
     },
     {
       id: "new",
       name: "Skimboosters",
       services: [
-        makeService("skimboosters", "Skimboosters", "Body procedures", 280.0, 4.7),
+        makeService("skimboosters", "Skimboosters", "Procedimientos faciales", 280.0, 4.7),
       ],
     },
     {
       id: "lipoliticos",
       name: "Lipoliticos",
       services: [
-        makeService("mesoterapia-lipolitica", "Mesoterapia lipolítica", "Body procedures", 280.0, 4.7),
-        makeService("enzimas-recombinantes", "Enzimas recombinantes", "Body procedures", 280.0, 4.7),
+        makeService("mesoterapia-lipolitica", "Mesoterapia lipolítica", "Procedimientos corporales", 280.0, 4.7),
+        makeService("enzimas-recombinantes", "Enzimas recombinantes", "Procedimientos corporales", 280.0, 4.7),
       ],
     },
     {
       id: "terapia-regenerativa",
       name: "Terapia regenerativa",
       services: [
-        makeService("pdrn", "PDRN", "Body procedures", 280.0, 4.7),
-        makeService("exosomas", "Exosomas", "Body procedures", 280.0, 4.7),
-        makeService("plasma", "Plasma Rico en Plaquetas", "Body procedures", 280.0, 4.7),
+        makeService("pdrn", "PDRN", "Procedimientos faciales", 280.0, 4.7),
+        makeService("exosomas", "Exosomas", "Procedimientos faciales", 280.0, 4.7),
+        makeService("plasma", "Plasma Rico en Plaquetas", "Procedimientos faciales", 280.0, 4.7),
       ],
     },
     {
       id: "skin",
       name: "Tecnología Medica",
       services: [
-        makeService("ultraformer-iii", "Ultraformer III – Ultrasonido micro y macro focalizado para lifting facial, contorno corporal y reducción de grasa localizada", "Skin care", 350.0, 4.9),
-        makeService("lumenis-stellar-m22", "Lumenis Stellar M22 – Plataforma láser multifunción para manchas, rejuvenecimiento y mejora de la textura de la piel", "Skin care", 320.0, 4.8),
+        makeService("ultraformer-iii", "Ultraformer III – Ultrasonido micro y macro focalizado para lifting facial, contorno corporal y reducción de grasa localizada", "Protección de la piel", 350.0, 4.9),
+        makeService("lumenis-stellar-m22", "Lumenis Stellar M22 – Plataforma láser multifunción para manchas, rejuvenecimiento y mejora de la textura de la piel", "Protección de la piel", 320.0, 4.8),
       ],
     },
   ],
@@ -1689,6 +1687,7 @@ function makeService(id, name, category, price, rating) {
 
   // Fusionar con contenidos específicos si existen
   const specific = perServiceContent[id] || {}
+  const hasOwnGallery = Object.prototype.hasOwnProperty.call(specific, 'gallery');
   return {
     id,
     name,       // nombre corto para la subcategoría/lista y el <option>
@@ -1699,7 +1698,10 @@ function makeService(id, name, category, price, rating) {
     // Campos combinados
     detailTitle: specific.detailTitle ?? defaults.detailTitle ?? name,
     mainImage: specific.mainImage || defaults.mainImage,
-    gallery: Array.isArray(specific.gallery) && specific.gallery.length ? specific.gallery : defaults.gallery,
+    gallery: hasOwnGallery
+  ? (Array.isArray(specific.gallery) ? specific.gallery.filter(g => typeof g === 'string' && g.trim()) : [])
+  : defaults.gallery,
+
     description: Array.isArray(specific.description) && specific.description.length ? specific.description : defaults.description,
     features: Array.isArray(specific.features) && specific.features.length ? specific.features : defaults.features,
 
@@ -1876,6 +1878,8 @@ function slideHeight(el, open) {
   el.style.height = `${startHeight}px`
   el.style.opacity = open ? "1" : "0"
 
+
+
   // Forzar reflow
   void el.offsetHeight
 
@@ -1892,6 +1896,17 @@ function slideHeight(el, open) {
     el.removeEventListener("transitionend", clean)
   }
   el.addEventListener("transitionend", clean)
+}
+
+
+const WA_NUMBERS = {
+  caba:    "54911XXXXXXXX",   // CABA
+  neuquen: "549299XXXXXXX",   // Neuquén
+};
+
+function buildWaHref(number, serviceTitle, cityLabel) {
+  const msg = `Hola 👋, vengo de la web. Quiero reservar en ${cityLabel} para: ${serviceTitle}`;
+  return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
 }
 
 // Altura "auto" calculada
@@ -2067,14 +2082,43 @@ function getDetailMarkup(svc) {
         <span class="category-text">${svc.category}</span>
         <h1 class="detail-title">${title}</h1>
       </div>
-      <div class="detail-right">
+      
+            <div class="detail-right">
         <div class="stars-wrapper">
           <div class="stars" aria-label="Rating ${svc.rating} de 5">
             ${renderStars(svc.rating)}
           </div>
+          <span class="rating-number">${svc.rating.toFixed(1)}</span>
         </div>
-        <div class="price">${formatPrice(svc.price)}</div>
+
+        <!-- Selector de sede -> despliega CABA / Neuquén -->
+        <div class="loc-cta" data-open="false">
+          <button class="loc-cta__toggle" type="button" aria-expanded="false" aria-controls="loc-cta-list">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            Reservar por WhatsApp
+            <span class="chev">▾</span>
+          </button>
+
+          <div id="loc-cta-list" class="loc-cta__list" hidden>
+            <a class="wa-btn" target="_blank" rel="noopener"
+               href="${buildWaHref(WA_NUMBERS.caba, title, 'CABA')}">
+              <span class="left">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><strong>CABA</strong>
+              </span>
+              <span class="wa-badge">Abrir chat</span>
+            </a>
+
+            <a class="wa-btn" target="_blank" rel="noopener"
+               href="${buildWaHref(WA_NUMBERS.neuquen, title, 'Neuquén')}">
+              <span class="left">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><strong>Neuquén</strong>
+              </span>
+              <span class="wa-badge">Abrir chat</span>
+            </a>
+          </div>
+        </div>
       </div>
+
     </div>
 
  <div class="main-image">
@@ -2270,3 +2314,39 @@ function showToast(msg) {
     t.hidden = true
   }, 3000)
 }
+
+
+// === Delegación para el selector de sede (CABA / Neuquén) ===
+document.addEventListener('click', (e) => {
+  const toggle = e.target.closest('.loc-cta__toggle');
+  const wrapper = e.target.closest('.loc-cta');
+
+  // Toggle abierto/cerrado
+  if (toggle && wrapper) {
+    const list = wrapper.querySelector('.loc-cta__list');
+    const isOpen = wrapper.dataset.open === 'true';
+    wrapper.dataset.open = isOpen ? 'false' : 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    if (list) list.hidden = isOpen;
+    e.stopPropagation();
+    return;
+  }
+
+  // Cerrar si se hace click fuera
+  const anyOpen = document.querySelector('.loc-cta[data-open="true"]');
+  if (anyOpen && !e.target.closest('.loc-cta')) {
+    anyOpen.dataset.open = 'false';
+    anyOpen.querySelector('.loc-cta__toggle')?.setAttribute('aria-expanded', 'false');
+    anyOpen.querySelector('.loc-cta__list')?.setAttribute('hidden', '');
+  }
+});
+
+// Cerrar con ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  const anyOpen = document.querySelector('.loc-cta[data-open="true"]');
+  if (!anyOpen) return;
+  anyOpen.dataset.open = 'false';
+  anyOpen.querySelector('.loc-cta__toggle')?.setAttribute('aria-expanded', 'false');
+  anyOpen.querySelector('.loc-cta__list')?.setAttribute('hidden', '');
+});

@@ -489,9 +489,7 @@ img {
 }
 
 .stars-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: none !important;
 }
 
 .rating-number {
@@ -622,4 +620,55 @@ img.zoomable { cursor: zoom-in; }
   justify-content: center;
 }
 
+/* === CTA de WhatsApp por sede === */
+.loc-cta { position: relative; }
+
+.loc-cta__toggle {
+  background: #5a1e1e;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.loc-cta__toggle:hover { filter: brightness(1.05); }
+.loc-cta__toggle:active { transform: translateY(1px); }
+.loc-cta__toggle .chev { opacity: .9; transition: transform var(--normal) var(--easing); }
+.loc-cta[data-open="true"] .loc-cta__toggle .chev { transform: rotate(180deg); }
+
+.loc-cta__list {
+  position: absolute; top: calc(100% + 8px); left: 0;
+  background: #fff; border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: var(--shadow); padding: 10px; min-width: 260px;
+  display: grid; gap: 8px; z-index: 5;
+}
+.loc-cta__list[hidden] { display: none !important; }
+
+.wa-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  text-decoration: none; color: inherit; background: #fff;
+  border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
+  transition: border-color var(--fast) ease, transform var(--fast) var(--easing);
+}
+.wa-btn:hover {
+  border-color: color-mix(in oklab, var(--accent), white 40%);
+  transform: translateY(-1px);
+}
+.wa-btn .left { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; }
+.wa-badge {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 15%, white);
+  padding: 4px 8px; border-radius: 999px;
+}
+
+/* En móviles, que se vea sólido */
+@media (max-width: 480px){
+  .loc-cta__list { position: static; box-shadow: none; border-radius: 10px; }
+}
 
