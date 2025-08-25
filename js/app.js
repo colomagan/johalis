@@ -604,13 +604,13 @@ const perServiceContent = {
   detailTitle: "Toxina Botulínica – Tercio Superior del Rostro",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/tercio-superior/portada.jpg",
+  mainImage: "./assets/img/servicios/tercio_superior/1.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/tercio-superior/portada.jpg",
-    "/assets/services/tercio-superior/antes-despues-1.jpg",
-    "/assets/services/tercio-superior/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/tercio_superior/2.jpg",
+    "./assets/img/servicios/tercio_superior/3.jpg",
+    "./assets/img/servicios/tercio_superior/4.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -727,8 +727,6 @@ const perServiceContent = {
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/sculptra/portada.jpg",
-    "/assets/services/sculptra/antes-despues-1.jpg",
     "/assets/services/sculptra/artistica-o-procedimiento.jpg",
   ],
 
@@ -802,13 +800,11 @@ const perServiceContent = {
   detailTitle: "Radiesse® – Bioestimulación y Efecto Lifting Inmediato",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/radiesse/portada.jpg",
+  mainImage: "./assets/img/servicios/radiesse/1.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
     "/assets/services/radiesse/portada.jpg",
-    "/assets/services/radiesse/antes-despues-1.jpg",
-    "/assets/services/radiesse/artistica-o-procedimiento.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -869,13 +865,11 @@ const perServiceContent = {
   detailTitle: "Facetem® – Bioestimulación y Redefinición del Contorno Facial",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/facetem/portada.jpg",
+  mainImage: "./assets/img/servicios/facetem/1.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
     "/assets/services/facetem/portada.jpg",
-    "/assets/services/facetem/antes-despues-1.jpg",
-    "/assets/services/facetem/artistica-o-procedimiento.jpg",
   ],
 
   // Intro (dos párrafos)
@@ -940,13 +934,13 @@ const perServiceContent = {
   detailTitle: "HarmonyCa® – Lifting Inmediato y Mejora de la Calidad de la Piel",
 
   // Imagen principal (portada / antes-después / artística)
-  mainImage: "/assets/services/harmonyca/portada.jpg",
+  mainImage: "./assets/img/servicios/harmonyca/4.jpg",
 
   // Galería (se muestran hasta 3 por defecto)
   gallery: [
-    "/assets/services/harmonyca/portada.jpg",
-    "/assets/services/harmonyca/antes-despues-1.jpg",
-    "/assets/services/harmonyca/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/harmonyca/1.jpg",
+    "./assets/img/servicios/harmonyca/2.jpg",
+    "./assets/img/servicios/harmonyca/3.jpg",
   ],
 
   // Intro (párrafos)
@@ -1007,13 +1001,13 @@ const perServiceContent = {
   detailTitle: "Skinboosters – Hidratación Profunda, Luminosidad y Revitalización de la Piel",
 
   // Imagen principal
-  mainImage: "./assets/img/servicios/skimbooster/1.jpg",
+  mainImage: "./assets/img/servicios/skimbooster/4.jpg",
 
   // Galería
   gallery: [
     "./assets/img/servicios/skimbooster/2.jpg",
     "./assets/img/servicios/skimbooster/3.jpg",
-    "./assets/img/servicios/skimbooster/4.jpg",
+    "./assets/img/servicios/skimbooster/1.jpg",
   ],
 
   // Descripción (párrafos)
@@ -1223,13 +1217,11 @@ const perServiceContent = {
   detailTitle: "Mesoterapia Lipolítica – Reducción de Grasa Localizada y Moldeo Corporal",
 
   // Imagen principal
-  mainImage: "/assets/services/mesoterapia-lipolitica/portada.jpg",
+mainImage: "./assets/img/servicios/mesoterapia_lipolitica/2.jpg",
 
   // Galería (hasta 3)
   gallery: [
-    "/assets/services/mesoterapia-lipolitica/portada.jpg",
-    "/assets/services/mesoterapia-lipolitica/antes-despues-1.jpg",
-    "/assets/services/mesoterapia-lipolitica/artistica-o-procedimiento.jpg",
+    "./assets/img/servicios/mesoterapia_lipolitica/1.jpg",
   ],
 
   // Intro (párrafos)
@@ -1387,8 +1379,6 @@ const perServiceContent = {
   // Galería (hasta 3)
   gallery: [
     "/assets/services/pdrn/portada.jpg",
-    "/assets/services/pdrn/antes-despues-1.jpg",
-    "/assets/services/pdrn/artistica-o-procedimiento.jpg",
   ],
 
   // Intro (párrafos)
@@ -1461,8 +1451,6 @@ const perServiceContent = {
   // Galería (hasta 3)
   gallery: [
     "/assets/services/exosomas/portada.jpg",
-    "/assets/services/exosomas/antes-despues-1.jpg",
-    "/assets/services/exosomas/artistica-o-procedimiento.jpg",
   ],
 
   // Intro (párrafos)
@@ -1536,7 +1524,7 @@ const perServiceContent = {
 
   // Galería (hasta 3)
   gallery: [
-    "/assets/services/prp/portada.jpg",
+    "./assets/img/servicios/plasma/2.jpg",
     "/assets/services/prp/antes-despues-1.jpg",
     "/assets/services/prp/artistica-o-procedimiento.jpg",
   ],
@@ -1663,7 +1651,7 @@ const data = {
       services: [
         makeService("pdrn", "PDRN", "Body procedures", 280.0, 4.7),
         makeService("exosomas", "Exosomas", "Body procedures", 280.0, 4.7),
-        makeService("plasma", "Plasma", "Body procedures", 280.0, 4.7),
+        makeService("plasma", "Plasma Rico en Plaquetas", "Body procedures", 280.0, 4.7),
       ],
     },
     {
@@ -1725,9 +1713,7 @@ function makeService(id, name, category, price, rating) {
     infoTitle: specific.infoTitle || defaults.infoTitle,
   }
 }
-
-// Estado
-let selected = data.categories[0].services[1] // por defecto el segundo de la primera categoría
+// por defecto el segundo de la primera categoría
 
 // Utilidades
 const $ = (sel, root = document) => root.querySelector(sel)
@@ -1736,6 +1722,41 @@ const formatPrice = (n) => n.toLocaleString("en-US", { style: "currency", curren
 const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false
 const EASING = "cubic-bezier(0.22, 1, 0.36, 1)"
 const DURATION = 280
+// --- Utilidades para seleccionar por URL (?svc= o ?cat=) ---
+function findServiceById(id) {
+  for (const cat of data.categories) {
+    const svc = cat.services.find(s => s.id === id);
+    if (svc) return { svc, catId: cat.id };
+  }
+  return null;
+}
+
+function getInitialSelection() {
+  const params = new URLSearchParams(location.search);
+  const svcId = params.get("svc");
+  const catIdParam = params.get("cat");
+
+  // 1) Si viene ?svc= y existe, seleccionar ese servicio
+  if (svcId) {
+    const found = findServiceById(svcId);
+    if (found) return { selected: found.svc, openCatId: found.catId };
+  }
+
+  // 2) Si viene ?cat= y existe, abrirla y elegir su primer servicio
+  if (catIdParam) {
+    const cat = data.categories.find(c => c.id === catIdParam);
+    if (cat && cat.services.length) {
+      return { selected: cat.services[0], openCatId: cat.id };
+    }
+  }
+
+  // 3) Por defecto: primera categoría, primer servicio
+  return { selected: data.categories[0].services[0], openCatId: data.categories[0].id };
+}
+
+const { selected: initialSelected, openCatId: initialOpenCatId } = getInitialSelection();
+let selected = initialSelected;
+let openCatId = initialOpenCatId;
 
 // Render inicial
 document.addEventListener("DOMContentLoaded", () => {
@@ -1747,19 +1768,21 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function renderAccordion() {
-  const container = $("#accordion")
-  container.innerHTML = ""
+  const container = $("#accordion");
+  container.innerHTML = "";
 
   data.categories.forEach((cat, idx) => {
-    const item = document.createElement("div")
-    item.className = "accordion-item"
-    item.dataset.open = idx === 0 ? "true" : "false"
+    const item = document.createElement("div");
+    item.className = "accordion-item";
+
+    const isOpen = cat.id === openCatId;
+    item.dataset.open = isOpen ? "true" : "false";
 
     // Header
-    const header = document.createElement("button")
-    header.type = "button"
-    header.className = "acc-header"
-    header.setAttribute("aria-expanded", idx === 0 ? "true" : "false")
+    const header = document.createElement("button");
+    header.type = "button";
+    header.className = "acc-header";
+    header.setAttribute("aria-expanded", isOpen ? "true" : "false");
     header.innerHTML = `
       <span>${cat.name}</span>
       <span class="acc-icon" aria-hidden="true">
@@ -1767,66 +1790,69 @@ function renderAccordion() {
           <path d="m6 9 6 6 6-6" />
         </svg>
       </span>
-    `
+    `;
 
     // Body
-    const body = document.createElement("div")
-    body.className = "acc-body"
+    const body = document.createElement("div");
+    body.className = "acc-body";
 
-    const ul = document.createElement("ul")
-    ul.className = "service-list"
+    const ul = document.createElement("ul");
+    ul.className = "service-list";
     cat.services.forEach((svc) => {
-      const li = document.createElement("li")
-      const btn = document.createElement("button")
-      btn.type = "button"
-      btn.className = "service-btn" + (svc.id === selected.id ? " active" : "")
-      btn.textContent = svc.name
-      btn.addEventListener("click", () => selectService(svc))
-      li.appendChild(btn)
-      ul.appendChild(li)
-    })
-    body.appendChild(ul)
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "service-btn" + (svc.id === selected.id ? " active" : "");
+      btn.textContent = svc.name;
+      btn.addEventListener("click", () => selectService(svc));
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+    body.appendChild(ul);
 
-    // Divider para la primera categoría (como en la captura)
+    // Divider para la primera categoría (si lo quieres mantener)
     if (idx === 0) {
-      const div = document.createElement("div")
-      div.className = "divider"
-      body.appendChild(div)
+      const div = document.createElement("div");
+      div.className = "divider";
+      body.appendChild(div);
     }
 
-    // Click header: animar apertura/cierre con slide
+    // Toggle accordion
     header.addEventListener("click", () => {
       $$(".accordion-item", container).forEach((el) => {
-        const b = $(".acc-body", el)
+        const b = $(".acc-body", el);
         if (el !== item && el.dataset.open === "true") {
-          el.dataset.open = "false"
-          $(".acc-header", el).setAttribute("aria-expanded", "false")
-          slideHeight(b, false)
+          el.dataset.open = "false";
+          $(".acc-header", el).setAttribute("aria-expanded", "false");
+          slideHeight(b, false);
         }
-      })
+      });
 
-      const open = item.dataset.open === "true"
-      item.dataset.open = open ? "false" : "true"
-      header.setAttribute("aria-expanded", open ? "false" : "true")
-      slideHeight(body, !open)
-    })
+      const open = item.dataset.open === "true";
+      item.dataset.open = open ? "false" : "true";
+      header.setAttribute("aria-expanded", open ? "false" : "true");
+      slideHeight(body, !open);
 
-    item.appendChild(header)
-    item.appendChild(body)
-    container.appendChild(item)
+      if (!open) openCatId = cat.id;
+    });
 
-    // Estado inicial con altura calculada
+    item.appendChild(header);
+    item.appendChild(body);
+    container.appendChild(item);
+
+    // Estado inicial
     requestAnimationFrame(() => {
-      if (item.dataset.open === "true") {
-        setOpenHeight(body)
-        body.style.opacity = "1"
+      if (isOpen) {
+        setOpenHeight(body);
+        body.style.opacity = "1";
       } else {
-        body.style.height = "0px"
-        body.style.opacity = "0"
+        body.style.height = "0px";
+        body.style.opacity = "0";
       }
-    })
-  })
+    });
+  });
 }
+
 
 // Transición de altura "slide"
 function slideHeight(el, open) {
@@ -1881,15 +1907,35 @@ function setOpenHeight(el) {
 }
 
 function selectService(svc) {
-  selected = svc
-  // Resaltar en lista con animación
-  $$(".service-btn").forEach((b) => b.classList.toggle("active", b.textContent === svc.name))
-  // Sincronizar select del formulario
-  const select = $("#service-select")
-  if (select) select.value = svc.id
-  // Transición de detalle
-  swapDetail(svc)
+  selected = svc;
+
+  // Resaltar en lista
+  $$(".service-btn").forEach((b) => b.classList.toggle("active", b.textContent === svc.name));
+
+  // Abrir la categoría correspondiente en el acordeón si es otra
+  const cats = data.categories;
+  const catIndex = cats.findIndex(c => c.services.some(s => s.id === svc.id));
+  if (catIndex !== -1) {
+    const container = $("#accordion");
+    openCatId = cats[catIndex].id;
+    $$(".accordion-item", container).forEach((el, idx) => {
+      const b = $(".acc-body", el);
+      const shouldOpen = idx === catIndex;
+      el.dataset.open = shouldOpen ? "true" : "false";
+      $(".acc-header", el).setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+      if (shouldOpen) { setOpenHeight(b); b.style.opacity = "1"; }
+      else { b.style.height = "0px"; b.style.opacity = "0"; }
+    });
+  }
+
+  // Sincronizar el select del formulario
+  const select = $("#service-select");
+  if (select) select.value = svc.id;
+
+  // Render del detalle con animación
+  swapDetail(svc);
 }
+
 
 function renderServiceSelect() {
   const select = $("#service-select")
