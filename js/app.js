@@ -1899,15 +1899,34 @@ function slideHeight(el, open) {
 }
 
 
+// ── Números reales de WhatsApp por sede ────────────────────────────────────────
 const WA_NUMBERS = {
-  caba:    "54911XXXXXXXX",   // CABA
-  neuquen: "549299XXXXXXX",   // Neuquén
+  caba:    "5491138266329",   // CABA
+  neuquen: "5492995291106",   // Neuquén
 };
 
-function buildWaHref(number, serviceTitle, cityLabel) {
-  const msg = `Hola 👋, vengo de la web. Quiero reservar en ${cityLabel} para: ${serviceTitle}`;
-  return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
+// ── Mensajes precargados por categoría (IDs de data.categories) ───────────────
+const WA_MESSAGES_BY_CAT = {
+  facial: "¡Hola! Quiero saber los precios de los tratamientos con Acido Hialuronico",
+  breast: "¡Hola! Quiero saber los precios de los tratamientos con Toxina Botulinica",
+  body: "¡Hola! Quiero saber los precios de los tratamientos con Bioestimuladores de Colágeno",
+  new: "¡Hola! Quiero saber los precios de los tratamientos con Skinboosters",
+  lipoliticos: "¡Hola! Quiero saber los precios de los tratamientos con Lipoliticos",
+  "terapia-regenerativa": "¡Hola! Quiero saber los precios de los tratamientos con Terapia regenerativa",
+  skin: "¡Hola! Quiero saber los precios de los tratamientos con Tecnologia Medica",
+};
+
+// Devuelve el ID de categoría al que pertenece un servicio
+function getCategoryIdByService(svc) {
+  const cat = data.categories.find(c => c.services.some(s => s.id === svc.id));
+  return cat ? cat.id : null;
 }
+
+// Construye el link de WhatsApp con el mensaje dado
+function buildWaHref(number, message) {
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+}
+
 
 // Altura "auto" calculada
 function getAutoHeight(el) {
@@ -2019,6 +2038,10 @@ function getDetailMarkup(svc) {
   const hasGallery = Array.isArray(svc.gallery) && svc.gallery.length > 0
   const hasFeatures = Array.isArray(svc.features) && svc.features.length > 0
 
+  // ⬇️ NUEVO: mensaje por categoría
+  const catIdForSvc = getCategoryIdByService(svc);
+  const waMsg = WA_MESSAGES_BY_CAT[catIdForSvc] || "¡Hola! Quiero saber los precios";
+
   // Features en 2 columnas
   const mid = hasFeatures ? Math.ceil(svc.features.length / 2) : 0
   const colA = hasFeatures ? svc.features.slice(0, mid) : []
@@ -2101,7 +2124,7 @@ function getDetailMarkup(svc) {
 
           <div id="loc-cta-list" class="loc-cta__list" hidden>
             <a class="wa-btn" target="_blank" rel="noopener"
-               href="${buildWaHref(WA_NUMBERS.caba, title, 'CABA')}">
+               href="${buildWaHref(WA_NUMBERS.caba, waMsg)}">
               <span class="left">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><strong>CABA</strong>
               </span>
@@ -2109,7 +2132,7 @@ function getDetailMarkup(svc) {
             </a>
 
             <a class="wa-btn" target="_blank" rel="noopener"
-               href="${buildWaHref(WA_NUMBERS.neuquen, title, 'Neuquén')}">
+               href="${buildWaHref(WA_NUMBERS.neuquen, waMsg)}">
               <span class="left">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><strong>Neuquén</strong>
               </span>

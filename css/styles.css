@@ -371,6 +371,28 @@ body {
   margin-bottom: 4px;
 }
 
+.contact-text a,
+.contact-text a:visited {
+  color: inherit;               /* sin azul/morado */
+  text-decoration: none;        /* sin subrayado por defecto */
+}
+
+.contact-text a:hover,
+.contact-text a:focus-visible {
+  text-decoration: underline;   /* subrayado solo al pasar */
+  text-underline-offset: 3px;
+}
+
+.map-link {
+  border-bottom: 1px dashed rgba(101, 21, 10, 0.35); /* sutil pista de enlace */
+  padding-bottom: 1px;
+}
+
+.map-link:hover,
+.map-link:focus-visible {
+  border-bottom-color: transparent;
+}
+
 /* Social Links */
 .social-links {
   display: flex;
