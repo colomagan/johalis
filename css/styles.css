@@ -183,7 +183,19 @@ body {
 }
 .about-btn:hover{ background: #65150A; color:#fff; }
 .about-image{
-  flex:1; background-image:url('/assets/img/hero.jpg'); background-size:cover; background-position:center; min-height:400px;
+  display:flex;
+  justify-content:center;   /* centra horizontal */
+  align-items:center;       /* centra vertical */
+  background:#fff;          /* fondo blanco */
+  padding:40px;             /* aire alrededor de la foto */
+  min-height:400px;         /* mantiene altura similar */
+}
+
+.about-image img{
+  max-width:60%;            /* reduce el tamaño de la foto */
+  height:auto;
+  border-radius:12px;       /* opcional, quitalo si no lo querés */
+  box-shadow:0 8px 24px rgba(0,0,0,.1); /* opcional */
 }
 
 /* ==================== BOTÓN WHATSAPP ==================== */
@@ -212,7 +224,7 @@ body {
 
   /* Apilamos las secciones de 2 columnas */
   .tratamentos-section{ grid-template-columns: 1fr; }
-  .about-section{ flex-direction: column; }
+  .about-section{ grid-template-columns: 1fr; }  /* apila en 1 columna */
 
   /* Ajustes de paddings */
   .tratamentos-content, .about-content{ padding: 48px 32px; }
