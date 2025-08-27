@@ -2373,3 +2373,298 @@ document.addEventListener('keydown', (e) => {
   anyOpen.querySelector('.loc-cta__toggle')?.setAttribute('aria-expanded', 'false');
   anyOpen.querySelector('.loc-cta__list')?.setAttribute('hidden', '');
 });
+
+
+
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  const body = document.body;
+  
+  mobileMenu.classList.toggle('active');
+  
+  // Prevent body scroll when menu is open
+  if (mobileMenu.classList.contains('active')) {
+      body.style.overflow = 'hidden';
+  } else {
+      body.style.overflow = '';
+  }
+}
+
+function closeMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  const body = document.body;
+  
+  mobileMenu.classList.remove('active');
+  body.style.overflow = '';
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function (event) {
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+
+  if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+      closeMobileMenu();
+  }
+});
+
+// Close mobile menu on window resize
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 1024) {
+      closeMobileMenu();
+  }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          closeMobileMenu();
+      }
+  });
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function (entries) {
+  entries.forEach(entry => {
+      if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.classList.add('animated');
+      }
+  });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', function() {
+  // Observe treatment items
+  document.querySelectorAll('.treatment-item').forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px)';
+      observer.observe(item);
+  });
+  
+  // Observe contact items
+  document.querySelectorAll('.contact-item').forEach(item => {
+      observer.observe(item);
+  });
+  
+  // Observe footer elements
+  document.querySelectorAll('.footer-brand, .footer-links, .footer-contact').forEach(item => {
+      observer.observe(item);
+  });
+});
+
+// Form handling
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.getElementById('contactForm');
+  
+  if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const submitBtn = this.querySelector('.submit-btn');
+          const btnText = submitBtn.querySelector('.btn-text');
+          const btnLoading = submitBtn.querySelector('.btn-loading');
+          
+          // Show loading state
+          submitBtn.classList.add('loading');
+          btnText.style.display = 'none';
+          btnLoading.style.display = 'inline';
+          
+          // Get form data
+          const formData = new FormData(this);
+          const data = Object.fromEntries(formData);
+          
+          // Create WhatsApp message
+          const message = `¡Hola! Me interesa agendar una consulta.
+          
+Datos de contacto:
+• Nombre: ${data.nombre}
+• Email: ${data.email}
+• Teléfono: ${data.telefono}
+• Tratamiento de interés: ${data.tratamiento}
+
+Mensaje: ${data.mensaje || 'Sin mensaje adicional'}`;
+          
+          const whatsappUrl = `https://wa.me/5491138266329?text=${encodeURIComponent(message)}`;
+          
+          // Simulate form processing
+          setTimeout(() => {
+              // Reset loading state
+              submitBtn.classList.remove('loading');
+              btnText.style.display = 'inline';
+              btnLoading.style.display = 'none';
+              
+              // Open WhatsApp
+              window.open(whatsappUrl, '_blank');
+              
+              // Reset form
+              this.reset();
+              
+              // Show success message
+              showNotification('¡Mensaje enviado! Te redirigimos a WhatsApp.', 'success');
+          }, 1500);
+      });
+  }
+});
+
+// Notification system
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `
+      <div class="notification-content">
+          <span>${message}</span>
+          <button class="notification-close">&times;</button>
+      </div>
+  `;
+  
+  // Add styles
+  notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+      color: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      max-width: 300px;
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Animate in
+  setTimeout(() => {
+      notification.style.transform = 'translateX(0)';
+  }, 100);
+  
+  // Close functionality
+  const closeBtn = notification.querySelector('.notification-close');
+  closeBtn.addEventListener('click', () => {
+      notification.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+          document.body.removeChild(notification);
+      }, 300);
+  });
+  
+  // Auto close
+  setTimeout(() => {
+      if (document.body.contains(notification)) {
+          notification.style.transform = 'translateX(100%)';
+          setTimeout(() => {
+              if (document.body.contains(notification)) {
+                  document.body.removeChild(notification);
+              }
+          }, 300);
+      }
+  }, 5000);
+}
+
+// Lazy loading for images
+document.addEventListener('DOMContentLoaded', function() {
+  const images = document.querySelectorAll('img[data-src]');
+  
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.classList.remove('lazy');
+              imageObserver.unobserve(img);
+          }
+      });
+  });
+  
+  images.forEach(img => imageObserver.observe(img));
+});
+
+// Performance optimization: Debounced scroll handler
+let ticking = false;
+
+function updateScrollPosition() {
+  const scrolled = window.pageYOffset;
+  const navbar = document.querySelector('.navbar');
+  
+  if (scrolled > 100) {
+      navbar.classList.add('scrolled');
+  } else {
+      navbar.classList.remove('scrolled');
+  }
+  
+  ticking = false;
+}
+
+function requestTick() {
+  if (!ticking) {
+      requestAnimationFrame(updateScrollPosition);
+      ticking = true;
+  }
+}
+
+window.addEventListener('scroll', requestTick);
+
+// Touch support for mobile devices
+document.addEventListener('DOMContentLoaded', function() {
+  // Add touch class to body for touch-specific styles
+  if ('ontouchstart' in window) {
+      document.body.classList.add('touch-device');
+  }
+  
+  // Improve touch targets
+  const touchTargets = document.querySelectorAll('a, button, .treatment-item');
+  touchTargets.forEach(target => {
+      target.addEventListener('touchstart', function() {
+          this.classList.add('touch-active');
+      });
+      
+      target.addEventListener('touchend', function() {
+          setTimeout(() => {
+              this.classList.remove('touch-active');
+          }, 150);
+      });
+  });
+});
+
+
+// Error handling
+window.addEventListener('error', function(e) {
+  console.error('JavaScript error:', e.error);
+  // Could send error to analytics service here
+});
+
+// Service worker registration (for PWA capabilities)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+              console.log('SW registered: ', registration);
+          })
+          .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+          });
+  });
+}
