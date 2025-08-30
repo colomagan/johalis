@@ -11,35 +11,27 @@
   </head>
   <body>
     <!-- NAV - idéntico al index (enlaces absolutos para que funcionen desde esta página) -->
-<nav class="navbar">
-  <!-- Menú izquierdo -->
-  <div class="nav-menu nav-left">
-    <a href="/index.html#inicio">INICIO</a>
-    <a href="/index.html#ritha">RITHA CAPELATO</a>
-    <a href="/tratamientos.html">TRATAMENTOS</a>
-  </div>
+    <nav class="navbar">
+      <div class="nav-menu nav-left">
+          <a href="index.html">INICIO</a>
+          <a href="index.html#ritha">JOHALIS PADRÓN</a>
+          <a href="tratamientos.html"class="active">TRATAMIENTOS</a>
+      </div>
 
-  <!-- Logo centrado -->
-  <div class="logo-container">
-    <img src="/assets/img/logo/logo.png" alt="Logo Dra. Johalis Padrón" />
-  </div>
+      <a href="index.html"><div class="logo-container">
+          <img src="./assets/img/logo/logo.png" alt="Logo Dra. Johalis Padrón" />
+      </div>
+  </a>
 
-  <!-- Menú derecho -->
-  <div class="nav-menu nav-right">
-    <div class="dropdown">
-      <span>NEWS</span>
-      <span>▼</span>
-    </div>
-    <div class="dropdown">
-      <span>CURSOS</span>
-      <span>▼</span>
-    </div>
-    <a href="/contacto.html">CONTATO</a>
-  </div>
+      <div class="nav-menu nav-right">
+          <a href="news.html" >NEWS</a>
+          <a href="">CURSOS</a>
+          <a href="index.html#contacto">CONTACTO</a>
+      </div>
 
-  <!-- Botón mobile -->
-  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-</nav>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+  </nav>
+
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
@@ -51,9 +43,6 @@
   <a href="/contacto.html" onclick="closeMobileMenu()">CONTATO</a>
 </div>
 
-    <header class="sr-only">
-      <h1>Servicios estéticos</h1>
-    </header>
     
 
     <main class="container" role="main">
