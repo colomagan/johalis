@@ -2189,25 +2189,56 @@ function featureLi(text) {
 }
 
 function bindForm() {
-  const form = $("#appointment-form")
-  form.addEventListener("submit", (e) => {
-    e.preventDefault()
-    const name = $("#name").value.trim()
-    const email = $("#email").value.trim()
-    const date = $("#date").value
-    const svcId = $("#service-select").value
+  const form = $("#appointment-form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name  = $("#name").value.trim();
+    const email = $("#email").value.trim();
+    const date  = $("#date").value;
+    const svcId = $("#service-select").value;
 
     if (!name || !email || !date || !svcId) {
-      showToast("Completá todos los campos para reservar.")
-      return
+      showToast("Completá todos los campos para reservar.");
+      return;
     }
-    const svc = data.categories.flatMap((c) => c.services).find((s) => s.id === svcId)
-    showToast(`Turno solicitado: ${name} — ${svc?.name || "Servicio"} — ${date}`)
-    form.reset()
-    // Mantener el servicio seleccionado en el select
-    $("#service-select").value = selected.id
-  })
+
+    // Buscar el servicio seleccionado en el objeto data
+    const svc = data.categories
+      .flatMap((c) => c.services)
+      .find((s) => s.id === svcId);
+
+    // Crear el payload a enviar
+    const fd = new FormData();
+    fd.append("name", name);
+    fd.append("email", email);
+    fd.append("date", date);
+    fd.append("service_id", svcId);
+    fd.append("service_name", svc?.name || "");
+
+    try {
+      const res = await fetch("agendarTratamiento.php", {
+        method: "POST",
+        body: fd,
+      });
+
+      const out = await res.json().catch(() => ({ ok: false, msg: "Respuesta inválida" }));
+
+      if (res.ok && out.ok) {
+        showToast("¡Solicitud enviada! Te contactaremos pronto.");
+        form.reset();
+        // Mantener el servicio en el select
+        $("#service-select").value = selected.id;
+      } else {
+        showToast(out.msg || "No se pudo enviar. Probá de nuevo.");
+      }
+    } catch (err) {
+      console.error(err);
+      showToast("Error de red al enviar el formulario.");
+    }
+  });
 }
+
 
 // ====== Lightbox de imagen con navegación (main + gallery) ======
 (function initImageLightbox() {
