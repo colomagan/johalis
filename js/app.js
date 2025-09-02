@@ -2195,40 +2195,31 @@ function bindForm() {
 
     const name  = $("#name").value.trim();
     const email = $("#email").value.trim();
+    const phone = $("#phone").value.trim();
     const date  = $("#date").value;
-    const svcId = $("#service-select").value;
+    const sel   = $("#service-select");
+    const service = sel.options[sel.selectedIndex]?.text || ""; // nombre visible
 
-    if (!name || !email || !date || !svcId) {
+    if (!name || !email || !phone || !date || !service) {
       showToast("Completá todos los campos para reservar.");
       return;
     }
 
-    // Buscar el servicio seleccionado en el objeto data
-    const svc = data.categories
-      .flatMap((c) => c.services)
-      .find((s) => s.id === svcId);
-
-    // Crear el payload a enviar
     const fd = new FormData();
     fd.append("name", name);
     fd.append("email", email);
+    fd.append("phone", phone);
     fd.append("date", date);
-    fd.append("service_id", svcId);
-    fd.append("service_name", svc?.name || "");
+    fd.append("service", service); // <-- coincide con el PHP
 
     try {
-      const res = await fetch("agendarTratamiento.php", {
-        method: "POST",
-        body: fd,
-      });
-
+      const res = await fetch("agendarTratamiento.php", { method: "POST", body: fd });
       const out = await res.json().catch(() => ({ ok: false, msg: "Respuesta inválida" }));
-
       if (res.ok && out.ok) {
         showToast("¡Solicitud enviada! Te contactaremos pronto.");
         form.reset();
-        // Mantener el servicio en el select
-        $("#service-select").value = selected.id;
+        // si querés mantener el servicio seleccionado, vuelve a setearlo según tu variable `selected`
+        if (window.selected) $("#service-select").value = selected.id;
       } else {
         showToast(out.msg || "No se pudo enviar. Probá de nuevo.");
       }
@@ -2238,6 +2229,7 @@ function bindForm() {
     }
   });
 }
+
 
 
 // ====== Lightbox de imagen con navegación (main + gallery) ======

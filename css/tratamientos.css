@@ -1430,3 +1430,28 @@ img.zoomable {
     border: 2px solid rgba(255, 255, 255, 0.5);
   }
 }
+
+/* Ocultar iconos nativos de datetime-local para que no se superpongan */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+.field-datetime .icon {
+  pointer-events: auto; /* dejarlo clickeable */
+  cursor: pointer;
+}
+.field .icon {
+  pointer-events: auto;
+}
+
+.field select + .icon {
+  pointer-events: none; /* el ícono no intercepta clics */
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none; /* Safari / Chrome */
+  -moz-appearance: none;    /* Firefox */
+  background: transparent;
+}
