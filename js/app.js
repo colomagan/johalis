@@ -2474,59 +2474,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Form handling
-document.addEventListener('DOMContentLoaded', function() {
-  const contactForm = document.getElementById('contactForm');
-  
-  if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          const submitBtn = this.querySelector('.submit-btn');
-          const btnText = submitBtn.querySelector('.btn-text');
-          const btnLoading = submitBtn.querySelector('.btn-loading');
-          
-          // Show loading state
-          submitBtn.classList.add('loading');
-          btnText.style.display = 'none';
-          btnLoading.style.display = 'inline';
-          
-          // Get form data
-          const formData = new FormData(this);
-          const data = Object.fromEntries(formData);
-          
-          // Create WhatsApp message
-          const message = `¡Hola! Me interesa agendar una consulta.
-          
-Datos de contacto:
-• Nombre: ${data.nombre}
-• Email: ${data.email}
-• Teléfono: ${data.telefono}
-• Tratamiento de interés: ${data.tratamiento}
-
-Mensaje: ${data.mensaje || 'Sin mensaje adicional'}`;
-          
-          const whatsappUrl = `https://wa.me/5491138266329?text=${encodeURIComponent(message)}`;
-          
-          // Simulate form processing
-          setTimeout(() => {
-              // Reset loading state
-              submitBtn.classList.remove('loading');
-              btnText.style.display = 'inline';
-              btnLoading.style.display = 'none';
-              
-              // Open WhatsApp
-              window.open(whatsappUrl, '_blank');
-              
-              // Reset form
-              this.reset();
-              
-              // Show success message
-              showNotification('¡Mensaje enviado! Te redirigimos a WhatsApp.', 'success');
-          }, 1500);
-      });
-  }
-});
 
 // Notification system
 function showNotification(message, type = 'info') {

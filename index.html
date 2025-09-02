@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -46,7 +46,7 @@
             <a href="/tratamientos.html" onclick="closeMobileMenu()">TRATAMENTOS</a>
             <a href="#news" onclick="closeMobileMenu()">NEWS</a>
             <a href="#cursos" onclick="closeMobileMenu()">CURSOS</a>
-            <a href="#contato" onclick="closeMobileMenu()">CONTATO</a>
+            <a href="#contacto" onclick="closeMobileMenu()">CONTATO</a>
         </div>
 
         <!-- Hero Content -->
@@ -228,8 +228,8 @@
                         <div class="contact-text">
                             <h4>Email</h4>
                             <p>
-                                <a href="mailto:consultoriojohalispadron@gmail.com" aria-label="Enviar email">
-                                    consultoriojohalispadron@gmail.com
+                                <a href="mailto:consultas@clinicaspadron.com" aria-label="Enviar email">
+                                    consultas@clinicaspadron.com
                                 </a>
                             </p>
                             <p>Respuesta en 24 horas</p>
@@ -241,7 +241,7 @@
                 <div class="social-links">
                     <a href="#" class="social-link" aria-label="Instagram">
                         <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.689-.07-4.948 0-3.204.013-3.583.07-4.849.149-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                     </a>
                     <a href="#" class="social-link" aria-label="Facebook">
@@ -254,45 +254,55 @@
       
             <!-- Right Side - Contact Form -->
             <div class="contact-form-container">
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" method="post" action="enviar.php" accept-charset="UTF-8" novalidate>
+                    
+                    <!-- CSRF + honeypot -->
+                    <input type="hidden" name="csrf_token" value="">
+                    <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;border:0;padding:0;" aria-hidden="true">
+                  
                     <div class="form-group">
-                        <label for="nombre">Nombre completo</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                      <label for="nombre">Nombre completo</label>
+                      <input type="text" id="nombre" name="nombre" required>
                     </div>
-      
+                  
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" required>
-                        </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                      </div>
                     </div>
-      
+                  
                     <div class="form-group">
-                        <label for="tratamiento">Tratamiento de interés</label>
-                        <select id="tratamiento" name="tratamiento" required>
-                            <option value="">Selecciona un tratamiento</option>
-                            <option value="acido-hialuronico">Ácido Hialurónico</option>
-                            <option value="bioestimuladores">Bioestimuladores de Colágeno</option>
-                            <option value="botox">Toxina Botulínica (BOTOX)</option>
-                            <option value="aparatologia">Aparatología Facial y Corporal</option>
-                            <option value="consulta-general">Consulta General</option>
-                        </select>
+                      <label for="tratamiento">Tratamiento de interés</label>
+                      <select id="tratamiento" name="tratamiento" required>
+                        <option value="">Selecciona un tratamiento</option>
+                        <option value="acido-hialuronico">Ácido Hialurónico</option>
+                        <option value="bioestimuladores">Bioestimuladores de Colágeno</option>
+                        <option value="botox">Toxina Botulínica (BOTOX)</option>
+                        <option value="aparatologia">Aparatología Facial y Corporal</option>
+                        <option value="consulta-general">Consulta General</option>
+                      </select>
                     </div>
-      
+                  
                     <div class="form-group">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tus objetivos estéticos y cualquier consulta específica..."></textarea>
+                      <label for="mensaje">Mensaje</label>
+                      <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tus objetivos estéticos y cualquier consulta específica..."></textarea>
                     </div>
-      
+                  
                     <button type="submit" class="submit-btn">
-                        <span class="btn-text">Enviar Consulta</span>
-                        <span class="btn-loading" style="display: none;">Enviando...</span>
+                      <span class="btn-text">Enviar Consulta</span>
+                      <span class="btn-loading" style="display:none;">Enviando...</span>
                     </button>
-                </form>
+                  
+                    <!-- Contenedor de feedback -->
+                    <div id="form-feedback" style="margin-top:12px;"></div>
+                  </form>
+                  
+
             </div>
         </div>
     </section>
@@ -312,7 +322,7 @@
                     <div class="footer-social">
                         <a href="https://www.instagram.com/drajohalispadron?igsh=MWZzcmFlbGszcHprMg==" target="_blank" class="footer-social-link" aria-label="Instagram">
                             <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.689-.07-4.849 0-3.204.013-3.583.07-4.849.149-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                             </svg>
                         </a>
                         <a href="https://www.facebook.com/share/1CJWPyPhf8/" target="_blank" class="footer-social-link" aria-label="Facebook">
@@ -393,63 +403,129 @@
                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
         </svg>
     </a>
+    <script src="/js/app.js"></script>
 
     <script>
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
-        }
-
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.remove('active');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function (event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-
-            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
-                mobileMenu.classList.remove('active');
+        // --- util: pedir y cargar CSRF evitando caché ---
+        async function getCsrfToken() {
+          try {
+            const res = await fetch('enviar.php', {
+              method: 'GET',
+              credentials: 'same-origin',
+              cache: 'no-store' // evita reusar token viejo
+            });
+            const html = await res.text();
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            const meta = doc.querySelector('meta[data-csrf]');
+            const csrfInput = document.querySelector('input[name="csrf_token"]');
+            if (meta && csrfInput) {
+              csrfInput.value = meta.getAttribute('data-csrf') || '';
+              return csrfInput.value.length > 0;
             }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+          } catch (e) {
+            console.warn('No se pudo obtener CSRF:', e);
+          }
+          return false;
+        }
+      
+        // --- refs del form + modal (IDs que ya tenés en el HTML) ---
+        const form = document.getElementById('contactForm');       // <- tu form de contacto
+        const modal = document.getElementById('formModal');         // overlay
+        const modalTitle = document.getElementById('modal-title');  // h2 del modal
+        const modalMessage = document.getElementById('modal-message'); // p del modal
+        const closeModalBtn = document.querySelector('.close-modal');
+      
+        // Cerrar modal
+        if (closeModalBtn) closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+      
+        // Obtener token al cargar
+        getCsrfToken();
+      
+        // Submit del formulario de contacto
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+      
+          const submitBtn = form.querySelector('.submit-btn');
+          const btnText = submitBtn?.querySelector('.btn-text') || submitBtn;
+          const btnLoading = submitBtn?.querySelector('.btn-loading');
+      
+          // estado "Enviando…"
+          if (btnText) btnText.style.display = 'none';
+          if (btnLoading) btnLoading.style.display = 'inline';
+          if (submitBtn) submitBtn.disabled = true;
+      
+          // Token vacío? Pedilo ahora
+          const csrfInput = form.querySelector('input[name="csrf_token"]');
+          if (!csrfInput?.value) {
+            const ok = await getCsrfToken();
+            if (!ok) {
+              if (btnText) btnText.style.display = 'inline';
+              if (btnLoading) btnLoading.style.display = 'none';
+              if (submitBtn) submitBtn.disabled = false;
+              modalTitle.innerText = 'Error';
+              modalMessage.innerText = 'No se pudo obtener un token de seguridad. Recargá la página e intentá nuevamente.';
+              modal.classList.add('active');
+              return;
+            }
+          }
+      
+          const formData = new FormData(form);
+      
+          // Timeout 20s para evitar “colgado” si el SMTP demora
+          const controller = new AbortController();
+          const to = setTimeout(() => controller.abort(), 20000);
+      
+          try {
+            const res = await fetch('enviar.php', {
+              method: 'POST',
+              body: formData,
+              credentials: 'same-origin',
+              headers: { 'Accept': 'application/json' },
+              signal: controller.signal
             });
+            clearTimeout(to);
+      
+            const ct = res.headers.get('content-type') || '';
+            const data = ct.includes('application/json') ? await res.json()
+              : { success: false, message: 'Respuesta no válida del servidor.' };
+      
+            if (data.success) {
+              modalTitle.innerText = '¡Enviado!';
+              modalMessage.innerText = data.message || 'Tu mensaje fue enviado correctamente.';
+              form.reset();
+            } else {
+              modalTitle.innerText = 'Error';
+              modalMessage.innerText = data.message || 'No se pudo enviar el mensaje.';
+            }
+            modal.classList.add('active');
+      
+            // IMPORTANTE: el backend invalida el token luego del POST → pedimos uno nuevo
+            await getCsrfToken();
+      
+          } catch (err) {
+            modalTitle.innerText = 'Error de conexión';
+            modalMessage.innerText = (err.name === 'AbortError')
+              ? 'El servidor tardó demasiado en responder. Probá de nuevo.'
+              : 'No se pudo conectar con el servidor. Intentá nuevamente.';
+            modal.classList.add('active');
+          } finally {
+            if (btnText) btnText.style.display = 'inline';
+            if (btnLoading) btnLoading.style.display = 'none';
+            if (submitBtn) submitBtn.disabled = false;
+          }
         });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe treatment items for animation
-        document.querySelectorAll('.treatment-item').forEach(item => {
-            observer.observe(item);
-        });
-    </script>
+      </script>
+      
+    <!-- Modal de feedback -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 id="modal-title"></h2>
+          <p id="modal-message"></p>
+        </div>
+      </div>
+      
 </body>
 
 </html>
